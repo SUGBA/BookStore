@@ -13,7 +13,7 @@
     <div class="container">
         <div class="PanelUpper">
             <div class="toMainItem">
-                <a href="../index.html">
+                <a asp-controller="Main" asp-action="GetView">
                     <img src="~/images/shreImage/logo.png">
                 </a>
             </div class="toMainButton">
@@ -22,10 +22,10 @@
                 <label class="noSelectLabel" for="burger"> ☰ </label>
                 <nav class="pageList">
                     <ul>
-                        <li><a href="~/pages/newsPage.html">Новости</a></li>
-                        <li><a href="~/pages/catalogPage.html">Каталог</a></li>
-                        <li><a href="~/pages/contactsPage.html">Контакты</a></li>
-                        <li><a href="~/pages/loginPage.html">Авторизация</a></li>
+                        <li><a asp-controller="News" asp-action="GetView">Новости</a></li>
+                        <li><a asp-controller="Catalog" asp-action="GetView">Каталог</a></li>
+                        <li><a asp-controller="Contact" asp-action="GetView">Контакты</a></li>
+                        <li><a asp-controller="Login" asp-action="GetView">Авторизация</a></li>
                     </ul>
                 </nav>
             </div>
