@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BookStore.App.Contollers
+namespace BookStore.App.Controllers
 {
     /// <summary>
-    /// Контроллер страницы с каталогом
+    /// Контроллер главной страницы
     /// </summary>
 
-    [Route("Catalog")]
-    public class CatalogController : Controller
+    [Route("Main")]
+    public class MainController : Controller
     {
         /// <summary>
         /// Получение страницы
@@ -16,7 +16,7 @@ namespace BookStore.App.Contollers
         [HttpGet("GetView")]
         public IActionResult GetView()
         {
-            return View("CatalogPage");
+            return View("MainPage");
         }
     }
 }

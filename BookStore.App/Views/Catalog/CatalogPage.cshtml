@@ -1,0 +1,149 @@
+﻿<link rel="stylesheet" href="~/css/generalStyles.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/catalogPageStyles.css" asp-append-version="true">
+
+<div class="PanelLeft">
+    <div class="outProducts">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="4">Каталог</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/1.jpg">
+                            <p>Граф Аверин. Колдун Российской империи</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/2.jpg">
+                            <p>Портрет Дориана Грея</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/3.jpg">
+                            <p>Ваш покорный слуга кот</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/4.jpg">
+                            <p>1984 (новый перевод)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/9.jpg">
+                            <p>Триумфальная арка</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/5.jpg">
+                            <p>На Западном фронте без перемен</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/6.jpg">
+                            <p>Грозовой перевал</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/7.jpg">
+                            <p>Клуб самоубийц</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/8.jpg">
+                            <p>Мартин Иден</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/10.jpg">
+                            <p>Маленький принц</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/11.jpg">
+                            <p>Отцы и дети</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="productDiv">
+                            <img src="~/images/catalogImages/12.jpg">
+                            <p>Работа легкой не бывает</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="PanelRight">
+    <div class="filter-panel">
+        <h2>Фильтры</h2>
+        <form>
+            <fieldset class="filterFieldset">
+                <label for="janr">Жанр:</label>
+                <select class="filterSelect" id="janr" name="selectedJanr">
+                    <option value="fantasy">Фантастика</option>
+                    <option value="prose">Проза</option>
+                    <option value="popular_science">Научно-популярная</option>
+                    <option value="foreign">Зарубежная</option>
+                    <option value="domestic">Отечественная</option>
+                </select>
+            </fieldset>
+
+            <fieldset class="filterFieldset">
+                <label>Адрес:</label>
+
+                <div class="form_radio">
+                    <input type="radio" id="kuibysheva" name="drone" value="kuibysheva" />
+                    <label for="kuibysheva">ул. Куйбышева, 95Б, Пермь</label>
+                </div>
+
+                <div class="form_radio">
+                    <input type="radio" id="popova" name="drone" value="popova" />
+                    <label for="popova">ул. Попова, 23, Пермь</label>
+                </div>
+
+                <div class="form_radio">
+                    <input type="radio" id="speshilova" name="drone" value="speshilova" />
+                    <label for="speshilova">ул. Спешилова, 114, Пермь</label>
+                </div>
+
+            </fieldset>
+
+            <fieldset class="filterFieldset">
+                <label for="priceRange">Диапазон цен:</label>
+                <input id="priceRange" type="range" min="1" max="10000" value="1">
+                <p class="rangeValue">Р:0</p>
+            </fieldset>
+
+            <fieldset class="filterFieldset">
+                <label for="pageRange">Количество страниц:</label>
+                <input id="pageRange" type="range" min="1" max="10000" value="1">
+                <p class="rangeValue">Страниц:</p>
+            </fieldset>
+
+            <button id="apply-filters" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

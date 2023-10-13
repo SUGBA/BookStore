@@ -16,7 +16,7 @@ namespace BookStore.App.Controllers
         [HttpGet("GetView")]
         public IActionResult GetView()
         {
-            return View();
+            return View("NewsPage");
         }
     }
 }
