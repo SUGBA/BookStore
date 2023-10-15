@@ -9,7 +9,7 @@ namespace BookStore.Catalog.Entity
     /// <summary>
     /// Менеджеры магазинов
     /// </summary>
-    public class Manager
+    public class ManagerEntity
     {
         /// <summary>
         /// Идентификатор
@@ -34,7 +34,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Филиал
         /// </summary>
-        public Department? Department { get; set; }
+        public DepartmentEntity? Department { get; set; }
 
         /// <summary>
         /// Филиал
