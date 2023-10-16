@@ -9,7 +9,7 @@ namespace BookStore.Catalog.Entity
     /// <summary>
     /// Книга
     /// </summary>
-    public class Book
+    public class BookEntity
     {
         /// <summary>
         /// Идентификатор
@@ -44,7 +44,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Магазины
         /// </summary>
-        public List<Store> Stores { get; set; } = new();
+        public List<StoreEntity> Stores { get; set; } = new();
 
     }
 
