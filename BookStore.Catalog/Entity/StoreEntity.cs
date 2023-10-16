@@ -12,23 +12,29 @@ namespace BookStore.Catalog.Entity
     public class StoreEntity
     {
         /// <summary>
-        /// Идентификатор
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
         /// Количество книг
         /// </summary>
         public int BookCount { get; set; }
 
-        /// <summary>
-        /// Филиалы
-        /// </summary>
-        public List<DepartmentEntity> Departments { get; set; } = new();
 
         /// <summary>
-        /// Книги
+        /// Филиал
         /// </summary>
-        public List<BookEntity> Books { get; set; } = new();
+        public int DepartmentId { get; set; }
+
+        /// <summary>
+        /// Филиал
+        /// </summary>
+        public DepartmentEntity Department { get; set; } = new();
+
+        /// <summary>
+        /// Книга
+        /// </summary>
+        public int BookId { get; set; }
+
+        /// <summary>
+        /// Книга
+        /// </summary>
+        public DepartmentEntity Book { get; set; } = new();
     }
 }

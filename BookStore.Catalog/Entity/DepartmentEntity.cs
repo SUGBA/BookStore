@@ -30,5 +30,10 @@ namespace BookStore.Catalog.Entity
         /// Магазины
         /// </summary>
         public List<StoreEntity> Stores { get; set; } = new();
+
+        /// <summary>
+        /// Книги
+        /// </summary>
+        public List<BookEntity> Books { get; set; } = new();
     }
 }
