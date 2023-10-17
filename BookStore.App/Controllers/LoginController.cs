@@ -5,7 +5,7 @@ namespace BookStore.App.Controllers
     /// <summary>
     /// Контроллер страницы авторизации
     /// </summary>
-    
+
     [Route("Login")]
     public class LoginController : Controller
     {
@@ -14,9 +14,15 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetView")]
-        public IActionResult GetView()
+        public async Task<IActionResult> GetView()
         {
             return View("LoginPage");
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login()
+        {
+            throw new NotImplementedException();
         }
     }
 }

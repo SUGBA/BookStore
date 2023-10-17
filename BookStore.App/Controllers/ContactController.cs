@@ -14,7 +14,7 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetView")]
-        public IActionResult GetView()
+        public async Task<IActionResult> GetView()
         {
             return View("ContactPage");
         }

@@ -14,9 +14,20 @@ namespace BookStore.App.Contollers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetView")]
-        public IActionResult GetView()
+        public async Task<IActionResult> GetView()
         {
             return View("CatalogPage");
+        }
+
+        /// <summary>
+        /// Отсортировать
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        [HttpPost("Sort")]
+        public async Task<IActionResult> Sort()
+        {
+            throw new NotImplementedException();
         }
     }
 }
