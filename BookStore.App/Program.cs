@@ -4,6 +4,7 @@ using System.Reflection.Emit;
 using BookStore.EF.Context;
 using BookStore.News.Entity;
 using Microsoft.EntityFrameworkCore;
+using BookStore.App.Extensions.EfExtensions;
 
 namespace BookStore.App
 {
@@ -25,6 +26,7 @@ namespace BookStore.App
             app.MapRazorPages();
             app.MapDefaultControllerRoute();
 
+            app.Services.InitializeDb();
 
             app.MapGet("/", (BookStoreContext db) =>
             {
