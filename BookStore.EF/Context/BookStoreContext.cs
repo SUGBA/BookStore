@@ -35,7 +35,9 @@ namespace BookStore.EF.Context
             modelBuilder.Entity<BookEntity>()
                     .HasMany(e => e.Departments)
                     .WithMany(e => e.Books)
-                    .UsingEntity<DepartmentEntity>();
+                    .UsingEntity<StoreEntity>(
+                        l => l.HasOne<DepartmentEntity>(e => e.Department).WithMany(e => e.Stores),
+                        r => r.HasOne<BookEntity>(e => e.Book).WithMany(e => e.Stores));
 
             var newsList = new List<NewsEntity>()
             {
