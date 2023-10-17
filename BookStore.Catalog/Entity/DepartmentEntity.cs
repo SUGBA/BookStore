@@ -17,6 +17,11 @@ namespace BookStore.Catalog.Entity
         public int Id { get; set; }
 
         /// <summary>
+        /// Адрес магазина
+        /// </summary>
+        public string? Address { get; set; }
+
+        /// <summary>
         /// Менеджер
         /// </summary>
         public ManagerEntity? Manager { get; set; }
@@ -24,7 +29,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Менеджер
         /// </summary>
-        public int ManagerId { get; set; }
+        public int ManagerEntityId { get; set; }
 
         /// <summary>
         /// Магазины

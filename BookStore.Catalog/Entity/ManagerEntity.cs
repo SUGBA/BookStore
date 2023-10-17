@@ -35,10 +35,5 @@ namespace BookStore.Catalog.Entity
         /// Филиал
         /// </summary>
         public DepartmentEntity? Department { get; set; }
-
-        /// <summary>
-        /// Филиал
-        /// </summary>
-        public int DepartmentId { get; set; }
     }
 }

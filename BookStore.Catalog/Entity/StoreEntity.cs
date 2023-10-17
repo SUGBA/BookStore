@@ -16,11 +16,10 @@ namespace BookStore.Catalog.Entity
         /// </summary>
         public int BookCount { get; set; }
 
-
         /// <summary>
         /// Филиал
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int DepartmentEntityId { get; set; }
 
         /// <summary>
         /// Филиал
@@ -30,11 +29,11 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Книга
         /// </summary>
-        public int BookId { get; set; }
+        public int BookEntityId { get; set; }
 
         /// <summary>
         /// Книга
         /// </summary>
-        public DepartmentEntity Book { get; set; } = new();
+        public BookEntity Book { get; set; } = new();
     }
 }

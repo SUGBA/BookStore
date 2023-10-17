@@ -50,7 +50,6 @@ namespace BookStore.Catalog.Entity
         /// Филиалы
         /// </summary>
         public List<DepartmentEntity> Departments { get; set; } = new();
-
     }
 
     /// <summary>

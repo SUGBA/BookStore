@@ -1,4 +1,8 @@
+using BookStore.Auth.Entity;
+using BookStore.Catalog.Entity;
+using System.Reflection.Emit;
 using BookStore.EF.Context;
+using BookStore.News.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.App
@@ -22,7 +26,15 @@ namespace BookStore.App
             app.MapDefaultControllerRoute();
 
 
-            app.MapGet("/", (BookStoreContext db) => db.Users.ToList());
+            app.MapGet("/", (BookStoreContext db) =>
+            {
+                using (db)
+                {
+                    var departments = db.Departments.Select(x => x.Address);
+
+                    return string.Join(" | ", departments);
+                }
+            });
 
             app.Run();
         }
