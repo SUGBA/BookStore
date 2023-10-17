@@ -27,7 +27,6 @@ namespace BookStore.EF.Context
         public BookStoreContext(DbContextOptions<BookStoreContext> options) : base(options)
         {
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BookEntity>()
