@@ -26,8 +26,11 @@ namespace BookStore.EF.Repository
         /// <returns></returns>
         public async Task AddUser(UserEntity user)
         {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
+            if (user.Id == 0 || await GetUserById(user.Id) == null)
+            {
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
@@ -52,9 +55,11 @@ namespace BookStore.EF.Repository
         /// <returns></returns>
         public async Task DeleteUser(UserEntity user)
         {
-            _context.Attach(user);
-            _context.Remove(user);
-            await _context.SaveChangesAsync();
+            if (_context.Users.Contains(user))
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
         }
 
         /// <summary>

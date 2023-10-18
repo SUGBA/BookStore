@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AspNetCore;
-using BookStore.Auth.Entity;
+﻿using BookStore.Auth.Entity;
 using BookStore.EF.Repository.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers
 {
@@ -35,13 +34,14 @@ namespace BookStore.App.Controllers
             await _repository.AddUser(user);
             return await _repository.GetUsers();
         }
+
         /// <summary>
         /// Удаление по id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("DeleteUser")]
-        public async Task<List<UserEntity>> DeleteUser(int id)
+        [HttpDelete("DeleteUserById")]
+        public async Task<List<UserEntity>> DeleteUserById(int id)
         {
             await _repository.DeleteUser(id);
             return await _repository.GetUsers();
@@ -80,6 +80,5 @@ namespace BookStore.App.Controllers
             await _repository.UpdateUser(user);
             return await _repository.GetUsers();
         }
-
     }
 }

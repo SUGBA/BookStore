@@ -5,6 +5,7 @@ using BookStore.EF.Context;
 using BookStore.News.Entity;
 using Microsoft.EntityFrameworkCore;
 using BookStore.App.Extensions.EfExtensions;
+using System.Text;
 
 namespace BookStore.App
 {
@@ -21,18 +22,16 @@ namespace BookStore.App
             builder.Services.AddSwaggerGen();
 
             builder.Services.Scan(selector => selector
-                    .FromCallingAssembly()
-
-                    .AddClasses(classSelector =>
-                    classSelector.InNamespaces("BookStore.EF.Repository"))
+                    .FromApplicationDependencies()
+                    .AddClasses(classSelector => classSelector
+                    .InNamespaces("BookStore.EF.Repository"))
                     .AsMatchingInterface()
                     .WithTransientLifetime()
 
-                    .AddClasses(classSelector =>
-                    classSelector.InNamespaces("BookStore.App.Services"))
+                    .AddClasses(classSelector => classSelector
+                    .InNamespaces("BookStore.App.Services"))
                     .AsMatchingInterface()
-                    .WithTransientLifetime()
-                    );
+                    .WithTransientLifetime());
 
             var app = builder.Build();
 
