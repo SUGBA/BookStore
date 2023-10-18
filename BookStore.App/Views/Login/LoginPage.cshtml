@@ -1,14 +1,17 @@
-﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+﻿@using BookStore.Auth.Dto;
+@model LoginUserDto
+
+<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/loginPageStyles.css" asp-append-version="true">
 
 <div class="PanelLeft">
     <div class="login-container">
         <form class="login-form">
             <p>Авторизация</p>
-            <label for="username">Логин:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="Login">Логин:</label>
+            <input type="text" id="Login" name="Login" required value="@Model.Login">
+            <label for="Password">Пароль:</label>
+            <input type="password" id="Password" name="Password" required value="@Model.Password">
             <button type="submit">Войти</button>
         </form>
     </div>
