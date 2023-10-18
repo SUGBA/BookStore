@@ -100,8 +100,8 @@
         <h2>Фильтры</h2>
         <form>
             <fieldset class="filterFieldset">
-                <label for="janr">Жанр:</label>
-                <select class="filterSelect" id="janr" name="selectedJanr">
+                <label for="Genr">Жанр:</label>
+                <select class="filterSelect" id="Genr" name="Genr">
                     <option value="fantasy">Фантастика</option>
                     <option value="prose">Проза</option>
                     <option value="popular_science">Научно-популярная</option>
@@ -114,17 +114,17 @@
                 <label>Адрес:</label>
 
                 <div class="form_radio">
-                    <input type="radio" id="kuibysheva" name="drone" value="kuibysheva" />
+                    <input type="radio" id="kuibysheva" name="Address" value="kuibysheva" />
                     <label for="kuibysheva">ул. Куйбышева, 95Б, Пермь</label>
                 </div>
 
                 <div class="form_radio">
-                    <input type="radio" id="popova" name="drone" value="popova" />
+                    <input type="radio" id="popova" name="Address" value="popova" />
                     <label for="popova">ул. Попова, 23, Пермь</label>
                 </div>
 
                 <div class="form_radio">
-                    <input type="radio" id="speshilova" name="drone" value="speshilova" />
+                    <input type="radio" id="speshilova" name="Address" value="speshilova" />
                     <label for="speshilova">ул. Спешилова, 114, Пермь</label>
                 </div>
 
@@ -132,13 +132,13 @@
 
             <fieldset class="filterFieldset">
                 <label for="priceRange">Диапазон цен:</label>
-                <input id="priceRange" type="range" min="1" max="10000" value="1">
+                <input id="priceRange" type="range" min="1" max="10000" value="1" name="Price">
                 <p class="rangeValue">Р:0</p>
             </fieldset>
 
             <fieldset class="filterFieldset">
                 <label for="pageRange">Количество страниц:</label>
-                <input id="pageRange" type="range" min="1" max="10000" value="1">
+                <input id="pageRange" type="range" min="1" max="10000" value="1" name="PageCount">
                 <p class="rangeValue">Страниц:</p>
             </fieldset>
 

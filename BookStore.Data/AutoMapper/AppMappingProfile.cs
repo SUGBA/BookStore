@@ -8,6 +8,8 @@ using BookStore.Auth.Dto;
 using BookStore.Auth.Entity;
 using BookStore.Catalog.Dto;
 using BookStore.Catalog.Entity;
+using BookStore.Data.EntityDto.ContactDto;
+using BookStore.Data.EntityDto.MainDto;
 using BookStore.Data.EntityDto.NewsDto;
 using BookStore.News.Entity;
 
@@ -25,6 +27,10 @@ namespace BookStore.Data.AutoMapper
                 .ForMember(dto => dto.Genre, opt => opt.MapFrom(ent => ent.Book.Genre))
                 .ForMember(dto => dto.DepartmentsAddress, opt => opt.MapFrom(ent => ent.Book.Departments.Select(x => x.Address)))
                 .ForMember(dto => dto.BookCount, opt => opt.MapFrom(ent => ent.BookCount));
+
+            CreateMap<BookEntity, MainDto>();
+
+            CreateMap<ManagerEntity, ContactDto>();
 
             CreateMap<UserEntity, LoginUserDto>();
 

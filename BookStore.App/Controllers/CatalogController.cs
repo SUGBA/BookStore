@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.App.Services.Interfaces;
+using BookStore.Data.EntityDto.CatalogDto;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Contollers
 {
@@ -9,6 +11,13 @@ namespace BookStore.App.Contollers
     [Route("Catalog")]
     public class CatalogController : Controller
     {
+        private readonly ICatalogService _service;
+
+        public CatalogController(ICatalogService service)
+        {
+            _service = service;
+        }
+
         /// <summary>
         /// Получение страницы
         /// </summary>
@@ -16,7 +25,8 @@ namespace BookStore.App.Contollers
         [HttpGet("GetView")]
         public async Task<IActionResult> GetView()
         {
-            return View("CatalogPage");
+            var res = await _service.CreateViewModel();
+            return View("CatalogPage", res);
         }
 
         /// <summary>
@@ -25,9 +35,10 @@ namespace BookStore.App.Contollers
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         [HttpPost("Sort")]
-        public async Task<IActionResult> Sort()
+        public async Task<IActionResult> Sort(SortPropertyDto model)
         {
-            throw new NotImplementedException();
+            var res = await _service.CreateViewModel(model);
+            return View("CatalogPage", res);
         }
     }
 }

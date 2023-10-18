@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.App.Services;
+using BookStore.App.Services.Interfaces;
+using BookStore.Data.EntityDto.ContactDto;
+using BookStore.Data.EntityDto.MainDto;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers
 {
@@ -9,6 +13,13 @@ namespace BookStore.App.Controllers
     [Route("Contact")]
     public class ContactController : Controller
     {
+        private readonly IContactService _service;
+
+        public ContactController(IContactService service)
+        {
+            _service = service;
+        }
+
         /// <summary>
         /// Получение страницы
         /// </summary>
@@ -16,7 +27,8 @@ namespace BookStore.App.Controllers
         [HttpGet("GetView")]
         public async Task<IActionResult> GetView()
         {
-            return View("ContactPage");
+            List<ContactDto> res = await _service.CreateViewModel();
+            return View("ContactPage", res);
         }
     }
 }

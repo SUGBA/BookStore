@@ -21,7 +21,7 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
-        /// Получить список всех новостей
+        /// Добавить новость
         /// </summary>
         /// <returns></returns>
         public async Task AddNews(NewsEntity news)
@@ -34,7 +34,7 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
-        /// Получить новость по указанному Id
+        /// Удалить новость по указанному Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -49,7 +49,7 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
-        /// Добавление новости
+        /// Удалить новости
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
-        /// Удаление новости по Id
+        /// Получение списка новостей
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
-        /// Удаление новости по экзмепляру класса
+        /// Получение новости по Id
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.App.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers
 {
@@ -9,14 +10,23 @@ namespace BookStore.App.Controllers
     [Route("Login")]
     public class LoginController : Controller
     {
+        private readonly ILoginService _service;
+
+        public LoginController(ILoginService service)
+        {
+            _service = service;
+        }
+
+
         /// <summary>
         /// Получение страницы
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetView")]
-        public async Task<IActionResult> GetView()
+        public IActionResult GetView()
         {
-            return View("LoginPage");
+            var res = _service.CreateViewModel();
+            return View("LoginPage", res);
         }
 
         [HttpPost("Login")]

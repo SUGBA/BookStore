@@ -6,6 +6,7 @@ using BookStore.News.Entity;
 using Microsoft.EntityFrameworkCore;
 using BookStore.App.Extensions.EfExtensions;
 using System.Text;
+using BookStore.Data.AutoMapper;
 
 namespace BookStore.App
 {
@@ -20,7 +21,7 @@ namespace BookStore.App
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddAutoMapper(typeof(AppMappingProfile));
             builder.Services.Scan(selector => selector
                     .FromApplicationDependencies()
                     .AddClasses(classSelector => classSelector

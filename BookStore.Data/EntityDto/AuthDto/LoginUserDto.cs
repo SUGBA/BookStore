@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Auth.Dto
 {
-    public class LoginUserEntityDto
+    public class LoginUserDto
     {
         /// <summary>
         /// Логин
