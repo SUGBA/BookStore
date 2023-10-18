@@ -1,5 +1,7 @@
-﻿using BookStore.Auth.Entity;
+﻿using System.Runtime.CompilerServices;
+using BookStore.Auth.Entity;
 using BookStore.EF.Repository.Interfaces;
+using BookStore.News.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers
@@ -8,12 +10,88 @@ namespace BookStore.App.Controllers
     public class TestController : Controller
     {
         private readonly IUserRepository _repository;
+        private readonly INewsRepositrory _newsRepository;
 
-        public TestController(IUserRepository repository)
+        public TestController(IUserRepository repository, INewsRepositrory newsRepository)
         {
             _repository = repository;
+            _newsRepository = newsRepository;
         }
 
+        #region NewsRepository
+
+        /// <summary>
+        /// Получить список всех новостей
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetNews")]
+        public async Task<List<NewsEntity>> GetNews()
+        {
+            return await _newsRepository.GetNews();
+        }
+
+        /// <summary>
+        /// Получить новость по указанному Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("GetNewsById")]
+        public Task<NewsEntity?> GetNewsById(int id)
+        {
+            return _newsRepository.GetNewsById(id);
+        }
+
+        /// <summary>
+        /// Добавление новости
+        /// </summary>
+        /// <param name="news"></param>
+        /// <returns></returns>
+        [HttpPost("AddNews")]
+        public async Task<List<NewsEntity>> AddNews(NewsEntity news)
+        {
+            await _newsRepository.AddNews(news);
+            return await _newsRepository.GetNews();
+        }
+
+        /// <summary>
+        /// Удаление новости по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("DeleteNewsBuId")]
+        public async Task<List<NewsEntity>> DeleteNewsBuId(int id)
+        {
+            await _newsRepository.DeleteNewsBuId(id);
+            return await _newsRepository.GetNews();
+        }
+
+        /// <summary>
+        /// Удаление новости по экзмепляру класса
+        /// </summary>
+        /// <param name="news"></param>
+        /// <returns></returns>
+        [HttpDelete("DeleteNews")]
+        public async Task<List<NewsEntity>> DeleteNews(NewsEntity news)
+        {
+            await _newsRepository.DeleteNews(news);
+            return await _newsRepository.GetNews();
+        }
+
+        /// <summary>
+        /// Изменить новость
+        /// </summary>
+        /// <param name="news"></param>
+        /// <returns></returns>
+        [HttpPut("UpdateNews")]
+        public async Task<List<NewsEntity>> UpdateNews(NewsEntity news)
+        {
+            await _newsRepository.UpdateNews(news);
+            return await _newsRepository.GetNews();
+        }
+
+        #endregion
+
+        #region UserRepository
         /// <summary>
         /// Получение списка пользователей
         /// </summary>
@@ -80,5 +158,7 @@ namespace BookStore.App.Controllers
             await _repository.UpdateUser(user);
             return await _repository.GetUsers();
         }
+
+        #endregion
     }
 }
