@@ -18,6 +18,10 @@ namespace BookStore.App.Controllers
             _newsRepository = newsRepository;
         }
 
+        #region
+
+        #endregion
+
         #region NewsRepository
 
         /// <summary>

@@ -7,6 +7,8 @@ using BookStore.Auth.Entity;
 using BookStore.Catalog.Entity;
 using BookStore.EF.Context;
 using BookStore.EF.Repository.Interfaces;
+using BookStore.News.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.EF.Repository
 {
@@ -22,62 +24,86 @@ namespace BookStore.EF.Repository
         /// <summary>
         /// Добавление магазина
         /// </summary>
-        /// <param name="store"></param>
+        /// <param name="news"></param>
         /// <returns></returns>
         public async Task AddStore(StoreEntity store)
         {
-            await _context.Stores.AddAsync(store);
-            await _context.SaveChangesAsync();
+            if ((store.DepartmentEntityId == 0 && store.BookEntityId == 0) || await GetStoreById(store.DepartmentEntityId, store.BookEntityId) == null)
+            {
+                await _context.Stores.AddAsync(store);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        /// <summary>
+        /// Удаление магазина по экзмепляру класса
+        /// </summary>
+        /// <param name="news"></param>
+        /// <returns></returns>
+        public async Task DeleteStore(StoreEntity store)
+        {
+            if (_context.Stores.Contains(store))
+            {
+                _context.Stores.Remove(store);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        /// <summary>
+        /// Удаление магазина по Id магазина и Id книги
+        /// </summary>
+        /// <param name="idStore"></param>
+        /// <param name="idBook"></param>
+        /// <returns></returns>
+        public async Task DeleteStoreBuId(int idDepartment, int idBook)
+        {
+            StoreEntity? deletedStore = await GetStoreById(idDepartment, idBook);
+            if (deletedStore != null)
+            {
+                _context.Stores.Remove(deletedStore);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        /// <summary>
+        /// Получить магазин по Id магазина и Id книги
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<StoreEntity?> GetStoreById(int idDepartment, int idBook)
+        {
+            return await _context.Stores
+                        .Include(x => x.Book)
+                        .Include(y => y.Department)
+                        .ThenInclude(k => k.Manager)
+                        .FirstOrDefaultAsync(x => x.DepartmentEntityId == idDepartment && x.BookEntityId == idBook);
         }
 
         /// <summary>
         /// Получить список всех магазинов
         /// </summary>
         /// <returns></returns>
-        public Task DeleteStore(StoreEntity store)
+        public async Task<List<StoreEntity>> GetStores()
         {
-            //И чо с тобой делать, клю то у тебя составной
-            throw new NotImplementedException();
+            return await _context.Stores
+                        .Include(x => x.Book)
+                        .Include(y => y.Department)
+                        .ThenInclude(k => k.Manager)
+                        .ToListAsync();
         }
 
         /// <summary>
-        /// Получение мгазина по Id
+        /// Изменить магазин
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="news"></param>
         /// <returns></returns>
-        public Task DeleteStore(int id)
+        public async Task UpdateStore(StoreEntity store)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Изменение магазина
-        /// </summary>
-        /// <param name="store"></param>
-        /// <returns></returns>
-        public Task<StoreEntity?> GetStoreById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Удаление пользователя по экземпляру
-        /// </summary>
-        /// <param name="store"></param>
-        /// <returns></returns>
-        public Task<List<StoreEntity>> GetStores()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Удаление пользователя по Id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public Task UpdateStore(StoreEntity store)
-        {
-            throw new NotImplementedException();
+            if (_context.Stores.Any(x => x.DepartmentEntityId == store.DepartmentEntityId && x.BookEntityId == store.BookEntityId))
+            {
+                _context.Stores.Update(store);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

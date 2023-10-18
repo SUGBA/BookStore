@@ -4,18 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookStore.Catalog.Entity;
+using BookStore.News.Entity;
 
 namespace BookStore.EF.Repository.Interfaces
 {
     public interface IStoreRepository
     {
-        /// <summary>
-        /// Добавление магазина
-        /// </summary>
-        /// <param name="store"></param>
-        /// <returns></returns>
-        public Task AddStore(StoreEntity store);
-
         /// <summary>
         /// Получить список всех магазинов
         /// </summary>
@@ -23,31 +17,39 @@ namespace BookStore.EF.Repository.Interfaces
         Task<List<StoreEntity>> GetStores();
 
         /// <summary>
-        /// Получение мгазина по Id
+        /// Получить магазин по Id магазина и Id книги
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StoreEntity?> GetStoreById(int id);
+        Task<StoreEntity?> GetStoreById(int idDepartment, int idBook);
 
         /// <summary>
-        /// Изменение магазина
+        /// Добавление магазина
         /// </summary>
-        /// <param name="store"></param>
+        /// <param name="news"></param>
         /// <returns></returns>
-        Task UpdateStore(StoreEntity store);
+        Task AddStore(StoreEntity store);
 
         /// <summary>
-        /// Удаление пользователя по экземпляру
+        /// Удаление магазина по Id магазина и Id книги
         /// </summary>
-        /// <param name="store"></param>
+        /// <param name="idDepartment"></param>
+        /// <param name="idBook"></param>
+        /// <returns></returns>
+        Task DeleteStoreBuId(int idDepartment, int idBook);
+
+        /// <summary>
+        /// Удаление магазина по экзмепляру класса
+        /// </summary>
+        /// <param name="news"></param>
         /// <returns></returns>
         Task DeleteStore(StoreEntity store);
 
         /// <summary>
-        /// Удаление пользователя по Id
+        /// Изменить магазин
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="news"></param>
         /// <returns></returns>
-        Task DeleteStore(int id);
+        Task UpdateStore(StoreEntity store);
     }
 }
