@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.EF.Repository.Interfaces
 {
-    interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
 
     }

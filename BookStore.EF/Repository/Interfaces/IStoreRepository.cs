@@ -7,7 +7,7 @@ using BookStore.Catalog.Entity;
 
 namespace BookStore.EF.Repository.Interfaces
 {
-    interface IStoreRepository
+    public interface IStoreRepository
     {
         /// <summary>
         /// Добавление магазина

@@ -16,9 +16,23 @@ namespace BookStore.App
 
             string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
             builder.Services.AddDbContext<BookStoreContext>(options => options.UseNpgsql(connection));
-
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.Scan(selector => selector
+                    .FromCallingAssembly()
+
+                    .AddClasses(classSelector =>
+                    classSelector.InNamespaces("BookStore.EF.Repository"))
+                    .AsMatchingInterface()
+                    .WithTransientLifetime()
+
+                    .AddClasses(classSelector =>
+                    classSelector.InNamespaces("BookStore.App.Services"))
+                    .AsMatchingInterface()
+                    .WithTransientLifetime()
+                    );
 
             var app = builder.Build();
 
@@ -26,16 +40,18 @@ namespace BookStore.App
             app.MapRazorPages();
             app.MapDefaultControllerRoute();
 
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
             app.Services.InitializeDb();
 
-            app.MapGet("/", (BookStoreContext db) =>
+            app.UseSwaggerUI(options =>
             {
-                using (db)
-                {
-                    var departments = db.Departments.Select(x => x.Address);
-
-                    return string.Join(" | ", departments);
-                }
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
             });
 
             app.Run();

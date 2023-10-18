@@ -7,7 +7,7 @@ using BookStore.Auth.Entity;
 
 namespace BookStore.EF.Repository.Interfaces
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         /// <summary>
         /// Получить список всех пользователей
