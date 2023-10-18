@@ -20,10 +20,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BookStore.Auth\BookStore.Auth.csproj" />
-		<ProjectReference Include="..\BookStore.Catalog\BookStore.Catalog.csproj" />
+		<ProjectReference Include="..\BookStore.Data\BookStore.Data.csproj" />
 		<ProjectReference Include="..\BookStore.EF\BookStore.EF.csproj" />
-		<ProjectReference Include="..\BookStore.News\BookStore.News.csproj" />
 	</ItemGroup>
 
 </Project>
