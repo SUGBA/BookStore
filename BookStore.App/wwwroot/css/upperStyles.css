@@ -3,9 +3,7 @@
 }
 
 .burgerMenuItem {
-    display: inline-flex;
-    width: 100%;
-    height: 100%;
+    display: flex;
     margin: 0.2em;
 }
 
@@ -13,8 +11,13 @@
     display: none;
 }
 
+    .pageList::-webkit-scrollbar {
+        width: 0;
+    }
+
 .pageList li {
-    float: left;
+    padding: 0.2em;
+
 }
 
 .pageList li a {
@@ -24,12 +27,11 @@
     border-radius: 0px 0px 10px 10px;
     text-align: center;
     padding: 5px;
-    margin: 0px 10px 0px 10px;
     text-decoration: none;
-    height: 2em;
     font-size: 0.6em;
     font-weight: 600;
     font-family: Courier;
+
 }
 
 a img {
@@ -38,8 +40,8 @@ a img {
 }
 
 .pageList ul {
+    display: flex;
     list-style-type: none;
-    overflow: hidden;
 }
 
 li a:hover {
@@ -61,6 +63,10 @@ li a:hover {
     user-select: none;
 }
 
-#burger:checked+label+nav {
+#burger:checked + label + nav {
     display: block;
+    overflow-y: scroll;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 80px;
 }

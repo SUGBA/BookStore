@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="~/css/generalStyles.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/indexStyles.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/underPanelStyle.css">
+    <script src="~/js/underPanel.js"></script>
     <title>ТвойКнижный</title>
 </head>
 
@@ -32,6 +34,28 @@
         </div>
 
         @RenderBody()
+
+
+        <div class="PanelUnder">
+            <div class="UnderContainer">
+                <div class="any">
+                    <span id="current_date_time_block"></span>
+                </div>
+
+                <div class="time">
+                    <body onload="clockTimer();">
+                        <div class="clockpage">
+                            <span id="clock"></span>
+                            <span id="dayOfWeek"></span>
+                        </div>
+                    </body>
+                </div>
+
+                <div class="version">
+                    <label>Actual version v1.0.0</label>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

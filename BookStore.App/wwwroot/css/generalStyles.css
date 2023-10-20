@@ -26,12 +26,12 @@ body {
         "L L L L   L L L L   L L R R"
         "L L L L   L L L L   L L R R"
         "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R";
+        "L L L L   L L L L   L L R R"
+        "K K K K   K K K K   K K K K";
 }
 
 /* Описание Grird-Areas */
 .PanelUpper {
-    display: inline-flex;
     grid-area: U;
     height: 80px;
     border-bottom: 2px solid black;
@@ -44,4 +44,9 @@ body {
 
 .PanelRight {
     grid-area: R;
+}
+
+.PanelUnder {
+    height: 60px;
+    grid-area: K;
 }
