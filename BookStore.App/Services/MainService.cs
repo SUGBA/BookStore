@@ -8,10 +8,16 @@ namespace BookStore.App.Services
 {
     public class MainService : IMainService
     {
-        private readonly IStoreRepository _repository;
+        /// <summary>
+        /// Количество элементов в нижней панели
+        /// </summary>
+        private const int LOWER_PANEL_ITEMS = 6;
+
+        private readonly IBookRepository _repository;
+
         private readonly IMapper _mapper;
 
-        public MainService(IStoreRepository repositrory, IMapper mapper)
+        public MainService(IBookRepository repositrory, IMapper mapper)
         {
             _repository = repositrory;
             _mapper = mapper;
@@ -23,8 +29,8 @@ namespace BookStore.App.Services
         /// <returns></returns>
         public async Task<List<MainDto>> CreateViewModel()
         {
-            var list = await _repository.GetStores();
-            List<MainDto> res = list.Select(x => _mapper.Map<MainDto>(x)).ToList();
+            var list = await _repository.GetBooks();
+            List<MainDto> res = list.Take(LOWER_PANEL_ITEMS).Select(x => _mapper.Map<MainDto>(x)).ToList();
             return res;
         }
     }

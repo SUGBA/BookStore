@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+﻿@model List<MainDto>
+
+<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/indexStyles.css" asp-append-version="true">
 
 <div class="PanelLeft">
@@ -48,36 +50,16 @@
         </div>
 
         <div class="lowerItemsPanel">
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/1.jpg">
-                </a>
-            </div>
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/2.jpg">
-                </a>
-            </div>
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/3.jpg">
-                </a>
-            </div>
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/4.jpg">
-                </a>
-            </div>
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/5.jpg">
-                </a>
-            </div>
-            <div class="upperItem">
-                <a asp-controller="Catalog" asp-action="GetView">
-                    <img src="~/images/catalogImages/6.jpg">
-                </a>
-            </div>
+            @{
+                foreach (var item in Model)
+                {
+                    <div class="upperItem">
+                        <a asp-controller="Catalog" asp-action="GetView">
+                            <img src="@item.PathToImage">
+                        </a>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
