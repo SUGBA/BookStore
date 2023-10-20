@@ -22,7 +22,7 @@
                             {
                                     <td>
                                         <div class="productDiv">
-                                            <img src="@Model[i-1].PathToImage!.Substring(1)">
+                                            <img src="@Model[i-1].PathToImage">
                                             <p>@Model[i-1].Name</p>
                                         </div>
                                     </td>
@@ -38,31 +38,6 @@
                                     }
                             }
                         } 
-                        
-                        //if (Model.Count!=0)
-                        //{
-                        //    @:<tr>
-
-                        //    for (int i = 0; i < Model.Count; i++)
-                        //    {
-                        //            <td>
-                        //                <div class="productDiv">
-                        //                    <img src="@Model[i].PathToImage!.Substring(1)">
-                        //                    <p>@Model[i].Name</p>
-                        //                </div>
-                        //            </td>
-
-                        //            if (i % 4 == 0 || i == Model.Count - 1)
-                        //            {
-                        //                @:</tr>
-                                        
-                        //                if (i != Model.Count - 1)
-                        //                {
-                        //                   @:<tr> 
-                        //                }
-                        //            }
-                        //    }
-                        //}
                     }      
             </tbody>
         </table>

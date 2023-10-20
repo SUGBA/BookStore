@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookStore.EF.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    [Migration("20231020075428_InitialMigration")]
+    [Migration("20231020082955_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -118,7 +118,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)2,
                             Name = "Граф Аверин. Колдун Российской империи",
                             PageCount = 320,
-                            PathToImage = "~/images/catalogImages/1.jpg",
+                            PathToImage = "/images/catalogImages/1.jpg",
                             Price = 550.0
                         },
                         new
@@ -127,7 +127,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)4,
                             Name = "Портрет Дориана Грея",
                             PageCount = 480,
-                            PathToImage = "~/images/catalogImages/2.jpg",
+                            PathToImage = "/images/catalogImages/2.jpg",
                             Price = 690.0
                         },
                         new
@@ -136,7 +136,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)1,
                             Name = "Ваш покорный слуга кот",
                             PageCount = 120,
-                            PathToImage = "~/images/catalogImages/3.jpg",
+                            PathToImage = "/images/catalogImages/3.jpg",
                             Price = 480.0
                         },
                         new
@@ -145,7 +145,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)1,
                             Name = "1984 (новый перевод)",
                             PageCount = 370,
-                            PathToImage = "~/images/catalogImages/4.jpg",
+                            PathToImage = "/images/catalogImages/4.jpg",
                             Price = 550.0
                         },
                         new
@@ -154,7 +154,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)2,
                             Name = "Триумфальная арка",
                             PageCount = 390,
-                            PathToImage = "~/images/catalogImages/9.jpg",
+                            PathToImage = "/images/catalogImages/9.jpg",
                             Price = 440.0
                         },
                         new
@@ -163,7 +163,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)2,
                             Name = "На Западном фронте без перемен",
                             PageCount = 280,
-                            PathToImage = "~/images/catalogImages/5.jpg",
+                            PathToImage = "/images/catalogImages/5.jpg",
                             Price = 500.0
                         },
                         new
@@ -172,7 +172,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)1,
                             Name = "Грозовой перевал",
                             PageCount = 410,
-                            PathToImage = "~/images/catalogImages/6.jpg",
+                            PathToImage = "/images/catalogImages/6.jpg",
                             Price = 380.0
                         },
                         new
@@ -181,7 +181,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)2,
                             Name = "Клуб самоубийц",
                             PageCount = 410,
-                            PathToImage = "~/images/catalogImages/7.jpg",
+                            PathToImage = "/images/catalogImages/7.jpg",
                             Price = 570.0
                         },
                         new
@@ -190,7 +190,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)4,
                             Name = "Мартин Иден",
                             PageCount = 380,
-                            PathToImage = "~/images/catalogImages/8.jpg",
+                            PathToImage = "/images/catalogImages/8.jpg",
                             Price = 410.0
                         },
                         new
@@ -199,7 +199,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)4,
                             Name = "Маленький принц",
                             PageCount = 230,
-                            PathToImage = "~/images/catalogImages/10.jpg",
+                            PathToImage = "/images/catalogImages/10.jpg",
                             Price = 600.0
                         },
                         new
@@ -208,7 +208,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)5,
                             Name = "Отцы и дети",
                             PageCount = 510,
-                            PathToImage = "~/images/catalogImages/11.jpg",
+                            PathToImage = "/images/catalogImages/11.jpg",
                             Price = 380.0
                         },
                         new
@@ -217,7 +217,7 @@ namespace BookStore.EF.Migrations
                             Genre = (byte)3,
                             Name = "Работа легкой не бывает",
                             PageCount = 300,
-                            PathToImage = "~/images/catalogImages/12.jpg",
+                            PathToImage = "/images/catalogImages/12.jpg",
                             Price = 750.0
                         });
                 });
@@ -427,36 +427,36 @@ namespace BookStore.EF.Migrations
                         {
                             Id = 1,
                             Content = "Сентябрь 2023. Выпуск №3 Это интересно 1. Литературный тиндер: любовь в советскую и постсоветскую эпохи. Мы пофантазировали о том, как выглядели бы профили персонажей советских и современных российских писателей в дейтингах, и как сложились бы их отношения, если они нашли бы друг друга именно там. 2. Что мир читал в 1865 году? Пришествие Алисы и полет на Луну. В этом году читателю выпало свести знакомство с целым рядом очень интересных книг самого разного жанра. И с целым рядом авторов, о которых он раньше и не слышал. 3. Почему из «Смертельного образования» получилось бы классное аниме. Смертельно опасная школа волшебников, подростки",
-                            DateCreate = new DateTime(2023, 10, 18, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9050),
-                            PathToImage = "~/images/newsImages/1.jpg"
+                            DateCreate = new DateTime(2023, 10, 18, 8, 29, 51, 229, DateTimeKind.Utc).AddTicks(7320),
+                            PathToImage = "/images/newsImages/1.jpg"
                         },
                         new
                         {
                             Id = 2,
                             Content = "В день рождения великого языковеда Сергея Ивановича Ожегова, составителя одного из самых популярных толковых словарей, мы с вами ненадолго перенесемся в прошлое и проверим знание старинных или вышедших из употребления слов. Пройти тест",
-                            DateCreate = new DateTime(2023, 10, 17, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9056),
-                            PathToImage = "~/images/newsImages/2.jpg"
+                            DateCreate = new DateTime(2023, 10, 17, 8, 29, 51, 229, DateTimeKind.Utc).AddTicks(7327),
+                            PathToImage = "/images/newsImages/2.jpg"
                         },
                         new
                         {
                             Id = 3,
                             Content = "В современном мире множество причин для тревог: нелюбимая работа, вынужденный переезд, утрата  близких... Неисчерпаемый колодезь личных проблем — неспособность принять себя, синдром самозванца, страх совершить ошибку и многое, многое другое. Новая книга психолога Ольги Примаченко, автора бестселлера «К себе нежно», послужит лекарством для ран и тревог. Конечно, нет универсального рецепта для всех на свете проблем, зато можно научиться верить себе, спокойно воспринимать окружающий мир и строить жизнь так, как хочется нам, а не так, как диктуют другие. Ольга Примаченко - Всё закончится, а ты нет. ",
-                            DateCreate = new DateTime(2023, 10, 16, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9057),
-                            PathToImage = "~/images/newsImages/3.jpg"
+                            DateCreate = new DateTime(2023, 10, 16, 8, 29, 51, 229, DateTimeKind.Utc).AddTicks(7328),
+                            PathToImage = "/images/newsImages/3.jpg"
                         },
                         new
                         {
                             Id = 4,
                             Content = "С прошлого ноября, как и каждый предыдущий год, Шведская академия получает тысячи писем в поддержку авторов, как признанных, так и малоизвестных, претендующих на Нобелевскую премию. Такие номинации могут быть сделаны только квалифицированными номинаторами. Кто обладает правом номинировать кандидатов на Нобелевскую премию: 1. Члены Шведской академии и других академий, институтов и обществ, сходных с ней по структуре и назначению. 2. Профессора литературы и лингвистики в университетах и колледжах. 3. Предыдущие лауреаты Нобелевской премии по литературе.",
-                            DateCreate = new DateTime(2023, 10, 15, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9058),
-                            PathToImage = "~/images/newsImages/4.jpg"
+                            DateCreate = new DateTime(2023, 10, 15, 8, 29, 51, 229, DateTimeKind.Utc).AddTicks(7329),
+                            PathToImage = "/images/newsImages/4.jpg"
                         },
                         new
                         {
                             Id = 5,
                             Content = "Сегодня признанному Королю Ужасов исполняется 76 лет, и мы попросили нашего колумниста Энджи Эфенди раскрыть тайны такой притягательности прозы этого великого автора. Впервые я прочитала рассказ Кинга в девять лет в «Антологии современного американского рассказа». Никак не ожидала от смирной советской книжки, где обычно печатались истории с социальным подтекстом, и от рассказа с милым названием «Дети кукурузы» такой подставы. Потом уже стали появляться на прилавках книги Кинга в жутковатых (но креативных) обложках 90-х годов, и я узнала, насколько популярный он автор.",
-                            DateCreate = new DateTime(2023, 10, 14, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9059),
-                            PathToImage = "~/images/newsImages/5.jpg"
+                            DateCreate = new DateTime(2023, 10, 14, 8, 29, 51, 229, DateTimeKind.Utc).AddTicks(7330),
+                            PathToImage = "/images/newsImages/5.jpg"
                         });
                 });
 
