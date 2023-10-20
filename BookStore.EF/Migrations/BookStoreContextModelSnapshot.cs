@@ -322,6 +322,80 @@ namespace BookStore.EF.Migrations
                     b.HasIndex("BookEntityId");
 
                     b.ToTable("Stores", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            DepartmentEntityId = 1,
+                            BookEntityId = 1,
+                            BookCount = 50
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 2,
+                            BookEntityId = 2,
+                            BookCount = 30
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 3,
+                            BookEntityId = 3,
+                            BookCount = 27
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 1,
+                            BookEntityId = 4,
+                            BookCount = 18
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 2,
+                            BookEntityId = 5,
+                            BookCount = 99
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 3,
+                            BookEntityId = 6,
+                            BookCount = 56
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 1,
+                            BookEntityId = 7,
+                            BookCount = 57
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 2,
+                            BookEntityId = 8,
+                            BookCount = 58
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 3,
+                            BookEntityId = 9,
+                            BookCount = 12
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 1,
+                            BookEntityId = 10,
+                            BookCount = 14
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 2,
+                            BookEntityId = 11,
+                            BookCount = 15
+                        },
+                        new
+                        {
+                            DepartmentEntityId = 3,
+                            BookEntityId = 12,
+                            BookCount = 3
+                        });
                 });
 
             modelBuilder.Entity("BookStore.News.Entity.NewsEntity", b =>
@@ -350,35 +424,35 @@ namespace BookStore.EF.Migrations
                         {
                             Id = 1,
                             Content = "Сентябрь 2023. Выпуск №3 Это интересно 1. Литературный тиндер: любовь в советскую и постсоветскую эпохи. Мы пофантазировали о том, как выглядели бы профили персонажей советских и современных российских писателей в дейтингах, и как сложились бы их отношения, если они нашли бы друг друга именно там. 2. Что мир читал в 1865 году? Пришествие Алисы и полет на Луну. В этом году читателю выпало свести знакомство с целым рядом очень интересных книг самого разного жанра. И с целым рядом авторов, о которых он раньше и не слышал. 3. Почему из «Смертельного образования» получилось бы классное аниме. Смертельно опасная школа волшебников, подростки",
-                            DateCreate = new DateTime(2023, 10, 15, 9, 53, 9, 310, DateTimeKind.Utc).AddTicks(5996),
+                            DateCreate = new DateTime(2023, 10, 18, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9050),
                             PathToImage = "~/images/newsImages/1.jpg"
                         },
                         new
                         {
                             Id = 2,
                             Content = "В день рождения великого языковеда Сергея Ивановича Ожегова, составителя одного из самых популярных толковых словарей, мы с вами ненадолго перенесемся в прошлое и проверим знание старинных или вышедших из употребления слов. Пройти тест",
-                            DateCreate = new DateTime(2023, 10, 14, 9, 53, 9, 310, DateTimeKind.Utc).AddTicks(6003),
+                            DateCreate = new DateTime(2023, 10, 17, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9056),
                             PathToImage = "~/images/newsImages/2.jpg"
                         },
                         new
                         {
                             Id = 3,
                             Content = "В современном мире множество причин для тревог: нелюбимая работа, вынужденный переезд, утрата  близких... Неисчерпаемый колодезь личных проблем — неспособность принять себя, синдром самозванца, страх совершить ошибку и многое, многое другое. Новая книга психолога Ольги Примаченко, автора бестселлера «К себе нежно», послужит лекарством для ран и тревог. Конечно, нет универсального рецепта для всех на свете проблем, зато можно научиться верить себе, спокойно воспринимать окружающий мир и строить жизнь так, как хочется нам, а не так, как диктуют другие. Ольга Примаченко - Всё закончится, а ты нет. ",
-                            DateCreate = new DateTime(2023, 10, 13, 9, 53, 9, 310, DateTimeKind.Utc).AddTicks(6004),
+                            DateCreate = new DateTime(2023, 10, 16, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9057),
                             PathToImage = "~/images/newsImages/3.jpg"
                         },
                         new
                         {
                             Id = 4,
                             Content = "С прошлого ноября, как и каждый предыдущий год, Шведская академия получает тысячи писем в поддержку авторов, как признанных, так и малоизвестных, претендующих на Нобелевскую премию. Такие номинации могут быть сделаны только квалифицированными номинаторами. Кто обладает правом номинировать кандидатов на Нобелевскую премию: 1. Члены Шведской академии и других академий, институтов и обществ, сходных с ней по структуре и назначению. 2. Профессора литературы и лингвистики в университетах и колледжах. 3. Предыдущие лауреаты Нобелевской премии по литературе.",
-                            DateCreate = new DateTime(2023, 10, 12, 9, 53, 9, 310, DateTimeKind.Utc).AddTicks(6005),
+                            DateCreate = new DateTime(2023, 10, 15, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9058),
                             PathToImage = "~/images/newsImages/4.jpg"
                         },
                         new
                         {
                             Id = 5,
                             Content = "Сегодня признанному Королю Ужасов исполняется 76 лет, и мы попросили нашего колумниста Энджи Эфенди раскрыть тайны такой притягательности прозы этого великого автора. Впервые я прочитала рассказ Кинга в девять лет в «Антологии современного американского рассказа». Никак не ожидала от смирной советской книжки, где обычно печатались истории с социальным подтекстом, и от рассказа с милым названием «Дети кукурузы» такой подставы. Потом уже стали появляться на прилавках книги Кинга в жутковатых (но креативных) обложках 90-х годов, и я узнала, насколько популярный он автор.",
-                            DateCreate = new DateTime(2023, 10, 11, 9, 53, 9, 310, DateTimeKind.Utc).AddTicks(6006),
+                            DateCreate = new DateTime(2023, 10, 14, 7, 54, 28, 550, DateTimeKind.Utc).AddTicks(9059),
                             PathToImage = "~/images/newsImages/5.jpg"
                         });
                 });
