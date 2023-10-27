@@ -1,0 +1,223 @@
+﻿.upperLabel {
+    display: block;
+    text-align: center;
+    margin: 1% 3% 0 3%;
+}
+
+.outContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Стили для левой панели */
+.leftContainer {
+    height: 100vh;
+    width: 100%;
+}
+
+/* Стили навигации между разделами */
+.modifyList {
+    width: 100%;
+}
+
+    .modifyList li {
+        padding: 0.2em;
+    }
+
+        .modifyList li a {
+            color: rgb(126, 120, 120);
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 0.6em;
+            font-weight: 600;
+            font-family: Courier;
+        }
+
+    .modifyList ul {
+        justify-content: center;
+        display: flex;
+        list-style-type: none;
+    }
+
+    .modifyList li a:hover {
+        color: #0b76ef;
+    }
+
+/* Стили Форм */
+
+.formContainer {
+    height: auto;
+    padding: 1px 0 0 0;
+    margin: 0 3% 0 3%;
+}
+
+.textInput {
+    float: right;
+    width: 100%;
+}
+
+    .textInput label {
+        font-weight: 500;
+        font-size: 0.6em;
+        width: 100%;
+    }
+
+    .textInput input {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #0000;
+        background-clip: padding-box;
+        border: 1px solid #bdbdbd;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .textInput input[type=file] {
+            text-decoration: none;
+            outline: none;
+        }
+
+        .textInput input::placeholder {
+            color: #212529;
+            opacity: 0.4;
+        }
+
+    .textInput textarea {
+        background-color: #0000;
+        resize: vertical;
+        display: block;
+        width: 100%;
+    }
+
+.radioInput {
+    margin: 10px;
+}
+
+    .radioInput label {
+        width: 100%;
+        font-size: 0.7em;
+    }
+
+    .radioInput input[type="radio"] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+        .radioInput input[type="radio"] + label {
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+        }
+
+            .radioInput input[type="radio"] + label::before {
+                content: '';
+                display: inline-block;
+                width: 0.6em;
+                height: 0.6em;
+                flex-shrink: 0;
+                flex-grow: 0;
+                border: 1px solid #adb5bd;
+                border-radius: 20%;
+                margin-right: 0.5em;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 50% 50%;
+            }
+
+        .radioInput input[type="radio"]:not(:disabled):not(:checked) + label:hover::before {
+            border-color: #b3d7ff;
+        }
+
+        /* стили для активной радиокнопки (при нажатии на неё) */
+        .radioInput input[type="radio"]:not(:disabled):active + label::before {
+            background-color: #b3d7ff;
+            border-color: #b3d7ff;
+        }
+
+
+        /* стили для радиокнопки, находящейся в состоянии checked */
+        .radioInput input[type="radio"]:checked + label::before {
+            border-color: #0b76ef;
+            background-color: #0b76ef;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+        }
+
+.submitInput {
+    width: 100%;
+    display: flex;
+}
+
+    .submitInput button {
+        font-size: 0.7em;
+        margin-top: 2%;
+        padding: 1%;
+        border-radius: 10px;
+        background-color: #0000;
+    }
+
+        .submitInput button:hover {
+            color: rgb(0, 174, 255);
+            border: 2px solid rgb(0, 174, 255);
+        }
+
+/* Стили для правой панели */
+.rightContainer {
+    height: 100vh;
+    width: 100%;
+}
+
+.addButton {
+    float: right;
+    color: rgb(126, 120, 120);
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: 600;
+    font-family: Courier;
+    width: 100%;
+}
+
+
+.itemsList {
+    width: 100%;
+}
+
+    .itemsList li {
+        padding: 0.2em;
+    }
+
+        .itemsList li a {
+            display: flex;
+            color: rgb(126, 120, 120);
+            border-bottom: 2px solid rgb(126, 120, 120);
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 0.6em;
+            font-weight: 600;
+            font-family: Courier;
+            width: 100%;
+        }
+
+    .itemsList ul {
+        justify-content: center;
+        display: block;
+        list-style-type: none;
+    }
+
+    .itemsList li a:hover {
+        color: rgb(0, 0, 0);
+        border-bottom: 3px solid rgb(0, 0, 0);
+    }

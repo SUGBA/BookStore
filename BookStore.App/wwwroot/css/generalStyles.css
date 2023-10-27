@@ -16,18 +16,18 @@ body {
     display: grid;
     height: 100vh;
     grid-template-areas:
-        "U U U U   U U U U   U U U U "
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "L L L L   L L L L   L L R R"
-        "K K K K   K K K K   K K K K";
+        "U U U U   U U U U   U U"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "L L L L   L L L L   L L"
+        "K K K K   K K K K   K K";
 }
 
 /* Описание Grird-Areas */
@@ -40,10 +40,6 @@ body {
 
 .PanelLeft {
     grid-area: L;
-}
-
-.PanelRight {
-    grid-area: R;
 }
 
 .PanelUnder {

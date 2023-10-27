@@ -3,7 +3,7 @@ using BookStore.Data.EntityDto.MainDto;
 
 namespace BookStore.App.Services.Interfaces
 {
-    public interface ILoginService
+    public interface IAdminService
     {
         /// <summary>
         /// Собрать ViewModel

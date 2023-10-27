@@ -15,24 +15,22 @@
         width: 0;
     }
 
-.pageList li {
-    padding: 0.2em;
+    .pageList li {
+        padding: 0.2em;
+    }
 
-}
-
-.pageList li a {
-    display: block;
-    color: rgb(126, 120, 120);
-    border-bottom: 2px solid rgb(126, 120, 120);
-    border-radius: 0px 0px 10px 10px;
-    text-align: center;
-    padding: 5px;
-    text-decoration: none;
-    font-size: 0.6em;
-    font-weight: 600;
-    font-family: Courier;
-
-}
+        .pageList li a {
+            display: block;
+            color: rgb(126, 120, 120);
+            border-bottom: 2px solid rgb(126, 120, 120);
+            border-radius: 0px 0px 10px 10px;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 0.6em;
+            font-weight: 600;
+            font-family: Courier;
+        }
 
 a img {
     height: 2em;
@@ -44,7 +42,7 @@ a img {
     list-style-type: none;
 }
 
-li a:hover {
+.pageList li a:hover {
     color: rgb(0, 0, 0);
     border-bottom: 3px solid rgb(0, 0, 0);
 }

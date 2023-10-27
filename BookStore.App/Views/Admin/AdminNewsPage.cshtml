@@ -1,0 +1,44 @@
+﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/adminPageStyles.css" asp-append-version="true">
+
+<div class="PanelLeft">
+    <label class="upperLabel">Добро пожаловать, Валиев Антон Дмитриевич</label>
+    <div class="outContainer">
+        <div class="leftContainer">
+            <nav class="modifyList">
+                <ul>
+                    <li><a asp-controller="Admin" asp-action="GetUsersEditView">Пользователи</a></li>
+                    <li><a asp-controller="Admin" asp-action="GetCatalogEditView">Каталог</a></li>
+                    <li><a asp-controller="Admin" asp-action="GetNewsEditView">Новости</a></li>
+                </ul>
+            </nav>
+            <form class="formContainer" method="post">
+                <div class="textInput">
+                    <label for="Content">Содержимое новости:</label>
+                    <textarea id="Content" name="Content"></textarea>
+                </div>
+                <div class="textInput">
+                    <label for="PathToImage">Изображение:</label>
+                    <input type="file" name="PathToImage">
+                </div>
+                <div class="submitInput">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="rightContainer">
+            <a href="#" class="addButton">Добавить</a>
+            <nav class="itemsList">
+                <ul>
+                    <li><a href="#">Элемент №1</a></li>
+                    <li><a href="#">Элемент №2</a></li>
+                    <li><a href="#">Элемент №3</a></li>
+                    <li><a href="#">Элемент №4</a></li>
+                    <li><a href="#">Элемент №5</a></li>
+                    <li><a href="#">Элемент №6</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BookStore.App.Services
 {
-    public class LoginService : ILoginService
+    public class AdminService : IAdminService
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public LoginService(IUserRepository repositrory, IMapper mapper)
+        public AdminService(IUserRepository repositrory, IMapper mapper)
         {
             _repository = repositrory;
             _mapper = mapper;

@@ -1,0 +1,64 @@
+﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/adminPageStyles.css" asp-append-version="true">
+
+<div class="PanelLeft">
+    <label class="upperLabel">Добро пожаловать, Валиев Антон Дмитриевич</label>
+    <div class="outContainer">
+        <div class="leftContainer">
+            <nav class="modifyList">
+                <ul>
+                    <li><a asp-controller="Admin" asp-action="GetUsersEditView">Пользователи</a></li>
+                    <li><a asp-controller="Admin" asp-action="GetCatalogEditView">Каталог</a></li>
+                    <li><a asp-controller="Admin" asp-action="GetNewsEditView">Новости</a></li>
+                </ul>
+            </nav>
+            <form class="formContainer" method="post">
+                <div class="textInput">
+                    <label for="Name">Название:</label>
+                    <input type="text" id="Name" name="Name" placeholder="Введите новое название книги">
+                </div>
+                <div class="textInput">
+                    <label for="Price">Цена:</label>
+                    <input type="number" id="Price" name="Price" placeholder="Введите новую цену">
+                </div>
+                <div class="textInput">
+                    <label for="PageCount">Колличество страниц:</label>
+                    <input type="number" id="PageCount" name="PageCount" placeholder="Введите кол-во страниц">
+                </div>
+                <div class="textInput">
+                    <label for="Genre">Жанр:</label>
+                    <input type="text" id="Genre" name="Genre" placeholder="Введите новый жанр">
+                </div>
+                <div class="textInput">
+                    <label for="CountItems">Колличество в наличии:</label>
+                    <input type="number" id="CountItems" name="CountItems" placeholder="Введите кол-во экземпляров">
+                </div>
+                <div class="textInput">
+                    <label for="Address">Адрес:</label>
+                    <input type="text" id="Address" name="Address" placeholder="Введите новый Адрес">
+                </div>
+                <div class="textInput">
+                    <label for="PathToImage">Изображение:</label>
+                    <input type="file" name="PathToImage">
+                </div>
+                <div class="submitInput">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="rightContainer">
+            <a href="#" class="addButton">Добавить</a>
+            <nav class="itemsList">
+                <ul>
+                    <li><a href="#">Элемент №1</a></li>
+                    <li><a href="#">Элемент №2</a></li>
+                    <li><a href="#">Элемент №3</a></li>
+                    <li><a href="#">Элемент №4</a></li>
+                    <li><a href="#">Элемент №5</a></li>
+                    <li><a href="#">Элемент №6</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
