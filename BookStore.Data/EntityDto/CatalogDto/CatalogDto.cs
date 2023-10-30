@@ -23,7 +23,7 @@ namespace BookStore.Catalog.Dto
         /// <summary>
         /// Цена
         /// </summary>
-        public double Price { get; set; }
+        public int Price { get; set; }
 
         /// <summary>
         /// Количество страниц
