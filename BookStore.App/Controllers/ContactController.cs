@@ -1,5 +1,5 @@
 ﻿using BookStore.App.Services;
-using BookStore.App.Services.Interfaces;
+using BookStore.App.Services.ContollerServices.Interfaces;
 using BookStore.Data.EntityDto.ContactDto;
 using BookStore.Data.EntityDto.MainDto;
 using Microsoft.AspNetCore.Mvc;

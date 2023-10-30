@@ -1,4 +1,4 @@
-﻿using BookStore.App.Services.Interfaces;
+﻿using BookStore.App.Services.ContollerServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers

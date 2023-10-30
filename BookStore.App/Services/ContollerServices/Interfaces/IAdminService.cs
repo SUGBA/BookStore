@@ -1,7 +1,7 @@
 ﻿using BookStore.Auth.Dto;
 using BookStore.Data.EntityDto.MainDto;
 
-namespace BookStore.App.Services.Interfaces
+namespace BookStore.App.Services.ContollerServices.Interfaces
 {
     public interface IAdminService
     {

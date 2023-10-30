@@ -1,7 +1,7 @@
 ﻿using BookStore.Data.EntityDto.ContactDto;
 using BookStore.Data.EntityDto.MainDto;
 
-namespace BookStore.App.Services.Interfaces
+namespace BookStore.App.Services.ContollerServices.Interfaces
 {
     public interface IContactService
     {

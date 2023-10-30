@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BookStore.App.Services.Interfaces;
+using BookStore.App.Services.ContollerServices.Interfaces;
 using BookStore.Catalog.Dto;
 using BookStore.Data.EntityDto.CatalogDto;
 using BookStore.Data.EntityDto.ContactDto;
 using BookStore.EF.Repository.Interfaces;
 
-namespace BookStore.App.Services
+namespace BookStore.App.Services.ContollerServices
 {
     public class CatalogService : ICatalogService
     {

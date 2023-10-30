@@ -1,4 +1,4 @@
-﻿using BookStore.App.Services.Interfaces;
+﻿using BookStore.App.Services.ContollerServices.Interfaces;
 using BookStore.Data.EntityDto.NewsDto;
 using BookStore.EF.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;

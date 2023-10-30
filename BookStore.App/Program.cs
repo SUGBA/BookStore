@@ -7,6 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.App.Extensions.EfExtensions;
 using System.Text;
 using BookStore.Data.AutoMapper;
+using BookStore.App.Extensions.ScrutorExtsensions;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.IdentityModel.Tokens;
+using BookStore.App.Extensions.AuthExtensions;
+using BookStore.App.Data.Auth;
+using Microsoft.Extensions.Options;
 
 namespace BookStore.App
 {
@@ -15,24 +23,17 @@ namespace BookStore.App
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
+            builder.Services.Configure<AuthOptions>(builder.Configuration);
             builder.Services.AddDbContext<BookStoreContext>(options => options.UseNpgsql(connection));
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddAutoMapper(typeof(AppMappingProfile));
-            builder.Services.Scan(selector => selector
-                    .FromApplicationDependencies()
-                    .AddClasses(classSelector => classSelector
-                    .InNamespaces("BookStore.EF.Repository"))
-                    .AsMatchingInterface()
-                    .WithTransientLifetime()
 
-                    .AddClasses(classSelector => classSelector
-                    .InNamespaces("BookStore.App.Services"))
-                    .AsMatchingInterface()
-                    .WithTransientLifetime());
+            builder.Services.AddSecurity(builder.Configuration);
+
+            builder.Services.AddAutoMapper(typeof(AppMappingProfile));
+            builder.Services.ScanServices();
 
             var app = builder.Build();
 
