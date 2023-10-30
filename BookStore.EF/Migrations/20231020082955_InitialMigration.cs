@@ -22,7 +22,7 @@ namespace BookStore.EF.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     PathToImage = table.Column<string>(type: "text", nullable: true),
-                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Price = table.Column<int>(type: "integer", nullable: false),
                     PageCount = table.Column<int>(type: "integer", nullable: false),
                     Genre = table.Column<byte>(type: "smallint", nullable: false)
                 },
@@ -127,18 +127,18 @@ namespace BookStore.EF.Migrations
                 columns: new[] { "Id", "Genre", "Name", "PageCount", "PathToImage", "Price" },
                 values: new object[,]
                 {
-                    { 1, (byte)2, "Граф Аверин. Колдун Российской империи", 320, "/images/catalogImages/1.jpg", 550.0 },
-                    { 2, (byte)4, "Портрет Дориана Грея", 480, "/images/catalogImages/2.jpg", 690.0 },
-                    { 3, (byte)1, "Ваш покорный слуга кот", 120, "/images/catalogImages/3.jpg", 480.0 },
-                    { 4, (byte)1, "1984 (новый перевод)", 370, "/images/catalogImages/4.jpg", 550.0 },
-                    { 5, (byte)2, "Триумфальная арка", 390, "/images/catalogImages/9.jpg", 440.0 },
-                    { 6, (byte)2, "На Западном фронте без перемен", 280, "/images/catalogImages/5.jpg", 500.0 },
-                    { 7, (byte)1, "Грозовой перевал", 410, "/images/catalogImages/6.jpg", 380.0 },
-                    { 8, (byte)2, "Клуб самоубийц", 410, "/images/catalogImages/7.jpg", 570.0 },
-                    { 9, (byte)4, "Мартин Иден", 380, "/images/catalogImages/8.jpg", 410.0 },
-                    { 10, (byte)4, "Маленький принц", 230, "/images/catalogImages/10.jpg", 600.0 },
-                    { 11, (byte)5, "Отцы и дети", 510, "/images/catalogImages/11.jpg", 380.0 },
-                    { 12, (byte)3, "Работа легкой не бывает", 300, "/images/catalogImages/12.jpg", 750.0 }
+                    { 1, (byte)2, "Граф Аверин. Колдун Российской империи", 320, "/images/catalogImages/1.jpg", 550 },
+                    { 2, (byte)4, "Портрет Дориана Грея", 480, "/images/catalogImages/2.jpg", 690 },
+                    { 3, (byte)1, "Ваш покорный слуга кот", 120, "/images/catalogImages/3.jpg", 480 },
+                    { 4, (byte)1, "1984 (новый перевод)", 370, "/images/catalogImages/4.jpg", 550 },
+                    { 5, (byte)2, "Триумфальная арка", 390, "/images/catalogImages/9.jpg", 440 },
+                    { 6, (byte)2, "На Западном фронте без перемен", 280, "/images/catalogImages/5.jpg", 500 },
+                    { 7, (byte)1, "Грозовой перевал", 410, "/images/catalogImages/6.jpg", 380 },
+                    { 8, (byte)2, "Клуб самоубийц", 410, "/images/catalogImages/7.jpg", 570 },
+                    { 9, (byte)4, "Мартин Иден", 380, "/images/catalogImages/8.jpg", 410 },
+                    { 10, (byte)4, "Маленький принц", 230, "/images/catalogImages/10.jpg", 600 },
+                    { 11, (byte)5, "Отцы и дети", 510, "/images/catalogImages/11.jpg", 380 },
+                    { 12, (byte)3, "Работа легкой не бывает", 300, "/images/catalogImages/12.jpg", 750 }
                 });
 
             migrationBuilder.InsertData(

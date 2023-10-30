@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Auth.Dto
+namespace BookStore.Admin.Dto
 {
     public class LoginUserDto
     {
@@ -17,5 +17,10 @@ namespace BookStore.Auth.Dto
         /// Пароль
         /// </summary>
         public string? Password { get; set; }
+
+        /// <summary>
+        /// Сообщение об ошибке
+        /// </summary>
+        public string? ErrorMessage { get; set; }
     }
 }

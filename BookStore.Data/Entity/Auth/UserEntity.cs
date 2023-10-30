@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Auth.Entity
+namespace BookStore.Admin.Entity
 {
     /// <summary>
     /// Пользователь

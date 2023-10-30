@@ -1,4 +1,4 @@
-using BookStore.Auth.Entity;
+using BookStore.Admin.Entity;
 using BookStore.Catalog.Entity;
 using System.Reflection.Emit;
 using BookStore.EF.Context;
@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.IdentityModel.Tokens;
 using BookStore.App.Extensions.AuthExtensions;
-using BookStore.App.Data.Auth;
 using Microsoft.Extensions.Options;
 
 namespace BookStore.App
@@ -24,7 +23,6 @@ namespace BookStore.App
         {
             var builder = WebApplication.CreateBuilder(args);
             string connection = builder.Configuration.GetConnectionString("DefaultConnection")!;
-            builder.Services.Configure<AuthOptions>(builder.Configuration);
             builder.Services.AddDbContext<BookStoreContext>(options => options.UseNpgsql(connection));
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
@@ -54,6 +52,9 @@ namespace BookStore.App
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = string.Empty;
             });
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.Run();
         }

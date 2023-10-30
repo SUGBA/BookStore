@@ -1,4 +1,6 @@
-﻿using BookStore.App.Services.ContollerServices.Interfaces;
+﻿using BookStore.Admin.Dto;
+using BookStore.App.Services.ContollerServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.App.Controllers
@@ -33,6 +35,7 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetUsersEditView")]
+        [Authorize]
         public IActionResult GetUsersEditView()
         {
             return View("AdminUsersPage");
@@ -43,6 +46,7 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetCatalogEditView")]
+        [Authorize]
         public IActionResult GetCatalogEditView()
         {
             return View("AdminCatalogPage");
@@ -53,6 +57,7 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetNewsEditView")]
+        [Authorize]
         public IActionResult GetNewsEditView()
         {
             return View("AdminNewsPage");
@@ -62,9 +67,10 @@ namespace BookStore.App.Controllers
         /// Авторизация
         /// </summary>
         [HttpPost("Login")]
-        public IActionResult Login()
+        public async Task<IResult> Login(LoginUserDto model)
         {
-            return View("AdminUsersPage");
+            var res = await _service.Login(model);
+            return res;
         }
     }
 }

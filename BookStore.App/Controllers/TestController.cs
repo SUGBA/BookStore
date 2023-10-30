@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using BookStore.Auth.Entity;
+using BookStore.Admin.Entity;
 using BookStore.EF.Repository.Interfaces;
 using BookStore.News.Entity;
 using Microsoft.AspNetCore.Mvc;
