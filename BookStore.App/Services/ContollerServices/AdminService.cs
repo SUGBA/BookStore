@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BookStore.App.Services.Interfaces;
+using BookStore.App.Services.ContollerServices.Interfaces;
 using BookStore.Auth.Dto;
 using BookStore.Catalog.Dto;
 using BookStore.EF.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
-namespace BookStore.App.Services
+namespace BookStore.App.Services.ContollerServices
 {
     public class AdminService : IAdminService
     {

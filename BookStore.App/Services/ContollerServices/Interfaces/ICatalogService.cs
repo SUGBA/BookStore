@@ -2,7 +2,7 @@
 using BookStore.Data.EntityDto.CatalogDto;
 using BookStore.Data.EntityDto.ContactDto;
 
-namespace BookStore.App.Services.Interfaces
+namespace BookStore.App.Services.ContollerServices.Interfaces
 {
     public interface ICatalogService
     {
