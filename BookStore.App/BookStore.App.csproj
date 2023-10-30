@@ -27,4 +27,8 @@
 		<ProjectReference Include="..\BookStore.EF\BookStore.EF.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Data\" />
+	</ItemGroup>
+
 </Project>

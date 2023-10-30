@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookStore.Auth.Entity;
+using BookStore.Admin.Entity;
 using BookStore.Catalog.Entity;
 
 namespace BookStore.EF.Repository.Interfaces

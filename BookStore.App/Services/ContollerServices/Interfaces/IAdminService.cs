@@ -1,4 +1,4 @@
-﻿using BookStore.Auth.Dto;
+﻿using BookStore.Admin.Dto;
 using BookStore.Data.EntityDto.MainDto;
 
 namespace BookStore.App.Services.ContollerServices.Interfaces
@@ -10,5 +10,11 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// </summary>
         /// <returns></returns>
         LoginUserDto CreateViewModel();
+
+        /// <summary>
+        /// Авторизоваться
+        /// </summary>
+        /// <returns></returns>
+        public Task<IResult> Login(LoginUserDto model);
     }
 }

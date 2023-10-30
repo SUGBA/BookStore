@@ -24,7 +24,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Филиал
         /// </summary>
-        public DepartmentEntity Department { get; set; } = new();
+        public DepartmentEntity Department { get; set; } = null!;
 
         /// <summary>
         /// Книга
@@ -34,6 +34,6 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Книга
         /// </summary>
-        public BookEntity Book { get; set; } = new();
+        public BookEntity Book { get; set; } = null!;
     }
 }
