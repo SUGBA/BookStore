@@ -12,8 +12,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.IdentityModel.Tokens;
-using BookStore.App.Extensions.AuthExtensions;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BookStore.App
 {
@@ -28,7 +28,8 @@ namespace BookStore.App
             builder.Services.AddRazorPages();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddSecurity(builder.Configuration);
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                            .AddCookie();
 
             builder.Services.AddAutoMapper(typeof(AppMappingProfile));
             builder.Services.ScanServices();

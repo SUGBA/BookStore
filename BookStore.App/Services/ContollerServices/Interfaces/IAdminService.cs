@@ -9,12 +9,14 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// Собрать ViewModel
         /// </summary>
         /// <returns></returns>
-        LoginUserDto CreateViewModel();
+        public LoginUserDto CreateViewModel(string Login = "", string Password = "");
 
         /// <summary>
-        /// Авторизоваться
+        /// Авторизоваться. True - удалось авторизоваться, False - не удалось авторизоваться
         /// </summary>
+        /// <param name="model"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        public Task<IResult> Login(LoginUserDto model);
+        public Task<bool> Login(LoginUserDto model, HttpContext context);
     }
 }

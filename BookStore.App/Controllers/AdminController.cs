@@ -2,6 +2,7 @@
 using BookStore.App.Services.ContollerServices.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace BookStore.App.Controllers
 {
@@ -24,11 +25,21 @@ namespace BookStore.App.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetLoginView")]
-        public IActionResult GetLoginView()
+        public IActionResult GetLoginView(string Login = "", string Password = "")
         {
-            var res = _service.CreateViewModel();
+            var res = _service.CreateViewModel(Login, Password);
             return View("LoginPage", res);
         }
+
+        ///// <summary>
+        ///// Получение страницы авторизации по существующей модели
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpGet("GetLoginView")]
+        //public IActionResult GetLoginView(string Login = "", string Password = "")
+        //{
+        //    return View("LoginPage");
+        //}
 
         /// <summary>
         /// Получение страницы редактирования пользователей
@@ -67,10 +78,12 @@ namespace BookStore.App.Controllers
         /// Авторизация
         /// </summary>
         [HttpPost("Login")]
-        public async Task<IResult> Login(LoginUserDto model)
+        public async Task<IActionResult> Login(LoginUserDto model)
         {
-            var res = await _service.Login(model);
-            return res;
+            if (await _service.Login(model, HttpContext))
+                return Redirect("/Admin/GetUsersEditView");
+            else
+                return RedirectToAction("GetUsersEditView", model);
         }
     }
 }

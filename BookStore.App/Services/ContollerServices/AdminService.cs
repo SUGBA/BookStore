@@ -5,40 +5,52 @@ using BookStore.Catalog.Dto;
 using BookStore.EF.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using BookStore.App.Services.AuthServices.Interfaces;
+using BookStore.Admin.Entity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace BookStore.App.Services.ContollerServices
 {
     public class AdminService : IAdminService
     {
+        private readonly ICoockieService _coockeService;
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IAuthService _authService;
 
-        public AdminService(IUserRepository repositrory, IMapper mapper, IAuthService authService)
+        public AdminService(IUserRepository repositrory, IMapper mapper, ICoockieService coockeService)
         {
             _repository = repositrory;
             _mapper = mapper;
-            _authService = authService;
+            _coockeService = coockeService;
         }
 
         /// <summary>
         /// Собрать ViewModel
         /// </summary>
         /// <returns></returns>
-        public LoginUserDto CreateViewModel()
+        public LoginUserDto CreateViewModel(string Login = "", string Password = "")
         {
-            return new LoginUserDto();
+            return new LoginUserDto() { Login = Login, Password = Password };
         }
 
         /// <summary>
-        /// Авторизоваться
+        /// Авторизоваться. True - удалось авторизоваться, False - не удалось авторизоваться
         /// </summary>
+        /// <param name="model"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        public async Task<IResult> Login(LoginUserDto model)
+        public async Task<bool> Login(LoginUserDto model, HttpContext context)
         {
             var users = await _repository.GetUsers();
-            IResult res = _authService.Auth(model, users);
-            return res;
+            var claimsIdentity = _coockeService.GetClaimsIdentity(model, users);
+            if (claimsIdentity == null)
+                return false;
+
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            return true;
         }
     }
 }
