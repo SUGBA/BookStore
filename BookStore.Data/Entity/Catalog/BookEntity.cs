@@ -29,7 +29,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Цена
         /// </summary>
-        public double Price { get; set; }
+        public int Price { get; set; }
 
         /// <summary>
         /// Количество страниц
