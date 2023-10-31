@@ -9,7 +9,7 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// Собрать ViewModel
         /// </summary>
         /// <returns></returns>
-        public LoginUserDto CreateViewModel(string Login = "", string Password = "");
+        public LoginUserDto CreateViewModel(string Login = "", string Password = "", string Message = "");
 
         /// <summary>
         /// Авторизоваться. True - удалось авторизоваться, False - не удалось авторизоваться

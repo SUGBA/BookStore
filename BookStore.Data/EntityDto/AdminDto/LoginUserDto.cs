@@ -17,5 +17,10 @@ namespace BookStore.Admin.Dto
         /// Пароль
         /// </summary>
         public string? Password { get; set; }
+
+        /// <summary>
+        /// Сообщение об ошибке
+        /// </summary>
+        public string? Message { get; set; }
     }
 }

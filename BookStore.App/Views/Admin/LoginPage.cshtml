@@ -13,6 +13,10 @@
             <label for="Password">Пароль:</label>
             <input type="password" id="Password" name="Password" required value="@Model.Password">
             <button type="submit">Войти</button>
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                @:<label>@Model.Message</label>
+            }
         </form>
     </div>
 </div>
