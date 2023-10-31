@@ -24,6 +24,20 @@ namespace BookStore.App.Controllers
         /// Получение страницы авторизации
         /// </summary>
         /// <returns></returns>
+        [HttpGet("Route")]
+        public IActionResult Route()
+        {
+            var userCoockie = HttpContext.User.Identity;
+            if (userCoockie is not null && userCoockie.IsAuthenticated)
+                return RedirectToAction("GetUsersEditView", "Admin");
+            else
+                return RedirectToAction("GetLoginView", "Admin");
+        }
+
+        /// <summary>
+        /// Получение страницы авторизации
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetLoginView/{Login?}/{Password?}/{Message?}")]
         public IActionResult GetLoginView(string Login = "", string Password = "", string Message = "")
         {
