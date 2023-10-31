@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
+using BookStore.App.Data.Consts;
 
 namespace BookStore.App.Services.ContollerServices
 {
@@ -31,9 +32,9 @@ namespace BookStore.App.Services.ContollerServices
         /// Собрать ViewModel
         /// </summary>
         /// <returns></returns>
-        public LoginUserDto CreateViewModel(string Login = "", string Password = "")
+        public LoginUserDto CreateViewModel(string Login = "", string Password = "", string Message = "")
         {
-            return new LoginUserDto() { Login = Login, Password = Password };
+            return new LoginUserDto() { Login = Login, Password = Password, Message = Message };
         }
 
         /// <summary>
@@ -47,7 +48,10 @@ namespace BookStore.App.Services.ContollerServices
             var users = await _repository.GetUsers();
             var claimsIdentity = _coockeService.GetClaimsIdentity(model, users);
             if (claimsIdentity == null)
+            {
+                model.Message = UserMessageConsts.UNKNOW_USER;
                 return false;
+            }
 
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             return true;
