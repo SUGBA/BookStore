@@ -24,22 +24,12 @@ namespace BookStore.App.Controllers
         /// Получение страницы авторизации
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetLoginView")]
+        [HttpGet("GetLoginView/{Login?}/{Password?}")]
         public IActionResult GetLoginView(string Login = "", string Password = "")
         {
             var res = _service.CreateViewModel(Login, Password);
             return View("LoginPage", res);
         }
-
-        ///// <summary>
-        ///// Получение страницы авторизации по существующей модели
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpGet("GetLoginView")]
-        //public IActionResult GetLoginView(string Login = "", string Password = "")
-        //{
-        //    return View("LoginPage");
-        //}
 
         /// <summary>
         /// Получение страницы редактирования пользователей
@@ -81,9 +71,9 @@ namespace BookStore.App.Controllers
         public async Task<IActionResult> Login(LoginUserDto model)
         {
             if (await _service.Login(model, HttpContext))
-                return Redirect("/Admin/GetUsersEditView");
+                return RedirectToAction("GetUsersEditView", "Admin");
             else
-                return RedirectToAction("GetUsersEditView", model);
+                return RedirectToAction("GetLoginView", "Admin", new { Login = model.Login, Password = model.Password });
         }
     }
 }

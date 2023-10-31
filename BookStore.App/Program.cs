@@ -36,6 +36,8 @@ namespace BookStore.App
 
             var app = builder.Build();
 
+            app.UseHttpsRedirection();
+            app.MapControllers();
             app.UseStaticFiles();
             app.MapRazorPages();
             app.MapDefaultControllerRoute();
