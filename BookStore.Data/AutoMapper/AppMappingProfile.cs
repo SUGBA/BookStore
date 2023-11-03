@@ -8,6 +8,7 @@ using BookStore.Admin.Dto;
 using BookStore.Admin.Entity;
 using BookStore.Catalog.Dto;
 using BookStore.Catalog.Entity;
+using BookStore.Data.EntityDto.AdminDto;
 using BookStore.Data.EntityDto.ContactDto;
 using BookStore.Data.EntityDto.MainDto;
 using BookStore.Data.EntityDto.NewsDto;
@@ -32,9 +33,9 @@ namespace BookStore.Data.AutoMapper
 
             CreateMap<ManagerEntity, ContactDto>();
 
-            CreateMap<UserEntity, LoginUserDto>();
-
             CreateMap<NewsEntity, NewsDto>();
+
+            CreateMap<UserEntity, UserDto>();
         }
     }
 }

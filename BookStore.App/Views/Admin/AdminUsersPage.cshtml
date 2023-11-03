@@ -1,4 +1,8 @@
-﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+﻿@using BookStore.Admin.Entity;
+@using BookStore.Data.EntityDto.AdminDto;
+@model AdminItemsDto<UserEntity>
+
+<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/adminPageStyles.css" asp-append-version="true">
 
 <div class="PanelLeft">
@@ -15,21 +19,21 @@
             <form class="formContainer" method="post">
                 <div class="textInput">
                     <label for="Name">ФИО:</label>
-                    <input type="text" id="Name" name="Name" placeholder="Введите новое ФИО">
+                    <input type="text" id="Name" name="Name" placeholder=@Model.ActiveItem.Name>
                 </div>
                 <div class="textInput">
                     <label for="Login">Логин:</label>
-                    <input type="text" id="Login" name="Login" placeholder="Введите новый Логин">
+                    <input type="text" id="Login" name="Login" placeholder=@Model.ActiveItem.Login>
                 </div>
                 <div class="textInput">
                     <label for="Password">Пароль:</label>
-                    <input type="text" id="Password" name="Password" placeholder="Введите новый пароль">
+                    <input type="text" id="Password" name="Password" placeholder=@Model.ActiveItem.Password>
                 </div>
 
                 <div class="radioInput">
                     <label>Роль:</label>
-                    <input type="radio" id="isAdmin" value="isAdmin" name="userRole"><label for="isAdmin">Администратор</label><br>
-                    <input type="radio" id="isUser" value="isUser" name="userRole"><label for="isUser">Пользователь</label>
+                    <input type="radio" id="isAdmin" value="isAdmin" name="userRole" checked="@(Model.ActiveItem.Role==UserRole.Admin)"><label for="isAdmin">Администратор</label><br>
+                    <input type="radio" id="isUser" value="isUser" name="userRole" checked="@(Model.ActiveItem.Role==UserRole.User)"><label for="isUser">Пользователь</label>
                 </div>
 
                 <div class="submitInput">
@@ -42,12 +46,12 @@
             <a href="#" class="addButton">Добавить</a>
             <nav class="itemsList">
                 <ul>
-                    <li><a href="#">Элемент №1</a></li>
-                    <li><a href="#">Элемент №2</a></li>
-                    <li><a href="#">Элемент №3</a></li>
-                    <li><a href="#">Элемент №4</a></li>
-                    <li><a href="#">Элемент №5</a></li>
-                    <li><a href="#">Элемент №6</a></li>
+                    @{
+                        foreach (var item in Model.Items)
+                        {
+                            <li><a asp-controller="Admin" asp-action="SelectingUserElement" asp-route-itemId="@item.Id">@item.Name</a></li>
+                        }
+                    }
                 </ul>
             </nav>
         </div>

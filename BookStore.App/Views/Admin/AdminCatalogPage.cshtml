@@ -1,4 +1,9 @@
-﻿<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
+﻿@using BookStore.Catalog.Entity;
+@using BookStore.Data.EntityDto.AdminDto;
+@model AdminItemsDto<StoreEntity>
+
+
+<link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/adminPageStyles.css" asp-append-version="true">
 
 <div class="PanelLeft">
@@ -15,15 +20,15 @@
             <form class="formContainer" method="post">
                 <div class="textInput">
                     <label for="Name">Название:</label>
-                    <input type="text" id="Name" name="Name" placeholder="Введите новое название книги">
+                    <input type="text" id="Name" name="Name" placeholder=@Model.ActiveItem.Book.Name>
                 </div>
                 <div class="textInput">
                     <label for="Price">Цена:</label>
-                    <input type="number" id="Price" name="Price" placeholder="Введите новую цену">
+                    <input type="number" id="Price" name="Price" placeholder=@Model.ActiveItem.Book.Price>
                 </div>
                 <div class="textInput">
                     <label for="PageCount">Колличество страниц:</label>
-                    <input type="number" id="PageCount" name="PageCount" placeholder="Введите кол-во страниц">
+                    <input type="number" id="PageCount" name="PageCount" placeholder=@Model.ActiveItem.Book.PageCount>
                 </div>
                 <div class="textInput">
                     <label for="Genre">Жанр:</label>
@@ -31,11 +36,11 @@
                 </div>
                 <div class="textInput">
                     <label for="CountItems">Колличество в наличии:</label>
-                    <input type="number" id="CountItems" name="CountItems" placeholder="Введите кол-во экземпляров">
+                    <input type="number" id="CountItems" name="CountItems" placeholder=@Model.ActiveItem.BookCount>
                 </div>
                 <div class="textInput">
                     <label for="Address">Адрес:</label>
-                    <input type="text" id="Address" name="Address" placeholder="Введите новый Адрес">
+                    <input type="text" id="Address" name="Address" placeholder=@Model.ActiveItem.Department.Address>
                 </div>
                 <div class="textInput">
                     <label for="PathToImage">Изображение:</label>
@@ -51,12 +56,17 @@
             <a href="#" class="addButton">Добавить</a>
             <nav class="itemsList">
                 <ul>
-                    <li><a href="#">Элемент №1</a></li>
-                    <li><a href="#">Элемент №2</a></li>
-                    <li><a href="#">Элемент №3</a></li>
-                    <li><a href="#">Элемент №4</a></li>
-                    <li><a href="#">Элемент №5</a></li>
-                    <li><a href="#">Элемент №6</a></li>
+                    @{
+                        foreach (var item in Model.Items)
+                        {
+                            <li>
+                                <a asp-controller="Admin" asp-action="SelectingCatalogElement"
+                                   asp-route-departmentId="@item.DepartmentEntityId" asp-route-bookId="@item.BookEntityId">
+                                    @item.Book.Name
+                                </a>
+                            </li>
+                        }
+                    }
                 </ul>
             </nav>
         </div>

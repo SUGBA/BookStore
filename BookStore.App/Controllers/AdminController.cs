@@ -46,39 +46,6 @@ namespace BookStore.App.Controllers
         }
 
         /// <summary>
-        /// Получение страницы редактирования пользователей
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetUsersEditView")]
-        [Authorize]
-        public IActionResult GetUsersEditView()
-        {
-            return View("AdminUsersPage");
-        }
-
-        /// <summary>
-        /// Получение страницы редактированя каталога
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetCatalogEditView")]
-        [Authorize]
-        public IActionResult GetCatalogEditView()
-        {
-            return View("AdminCatalogPage");
-        }
-
-        /// <summary>
-        /// Получение страницы редактированя новостей
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetNewsEditView")]
-        [Authorize]
-        public IActionResult GetNewsEditView()
-        {
-            return View("AdminNewsPage");
-        }
-
-        /// <summary>
         /// Авторизация
         /// </summary>
         [HttpPost("Login")]
@@ -89,6 +56,84 @@ namespace BookStore.App.Controllers
             else
                 return RedirectToAction("GetLoginView", "Admin",
                     new { Login = model.Login, Password = model.Password, Message = model.Message });
+        }
+
+        /// <summary>
+        /// Получение страницы редактирования пользователей
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetUsersEditView")]
+        [Authorize]
+        public async Task<IActionResult> GetUsersEditView()
+        {
+            var res = await _service.UserViewModel();
+            return View("AdminUsersPage", res);
+        }
+
+        /// <summary>
+        /// Получение страницы редактированя каталога
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetCatalogEditView")]
+        [Authorize]
+        public async Task<IActionResult> GetCatalogEditView()
+        {
+            var res = await _service.CatalogViewModel();
+            return View("AdminCatalogPage", res);
+        }
+
+        /// <summary>
+        /// Получение страницы редактированя новостей
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetNewsEditView")]
+        [Authorize]
+        public async Task<IActionResult> GetNewsEditView()
+        {
+            var res = await _service.NewsViewModel();
+            return View("AdminNewsPage", res);
+        }
+
+        /// <summary>
+        /// Выбран пользователь
+        /// </summary>
+        /// <param name="type"> Тип раздела </param>
+        /// <param name="itemId"> id элемента </param>
+        /// <returns></returns>
+        [HttpGet("SelectingUserElement/{itemId}")]
+        [Authorize]
+        public async Task<IActionResult> SelectingUserElement(int itemId)
+        {
+            var res = await _service.UserViewModel(itemId);
+            return View("AdminUsersPage", res);
+        }
+
+        /// <summary>
+        /// Выбрана книга
+        /// </summary>
+        /// <param name="departmentId"></param>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        [HttpGet("SelectingCatalogElement/{departmentId}/{bookId}")]
+        [Authorize]
+        public async Task<IActionResult> SelectingCatalogElement(int departmentId, int bookId)
+        {
+            var res = await _service.CatalogViewModel(departmentId, bookId);
+            return View("AdminCatalogPage", res);
+        }
+
+        /// <summary>
+        /// Выбрана новость
+        /// </summary>
+        /// <param name="type"> Тип раздела </param>
+        /// <param name="itemId"> id элемента </param>
+        /// <returns></returns>
+        [HttpGet("SelectingNewsElement/{itemId}")]
+        [Authorize]
+        public async Task<IActionResult> SelectingNewsElement(int itemId)
+        {
+            var res = await _service.NewsViewModel(itemId);
+            return View("AdminNewsPage", res);
         }
     }
 }
