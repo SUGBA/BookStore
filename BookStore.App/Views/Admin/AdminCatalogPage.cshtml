@@ -60,8 +60,7 @@
                         foreach (var item in Model.Items)
                         {
                             <li>
-                                <a asp-controller="Admin" asp-action="SelectingCatalogElement"
-                                   asp-route-departmentId="@item.DepartmentEntityId" asp-route-bookId="@item.BookEntityId">
+                                <a asp-controller="Admin" asp-action="SelectingCatalogElement" asp-route-itemId="@item.Id">
                                     @item.Book.Name
                                 </a>
                             </li>

@@ -32,7 +32,8 @@ namespace BookStore.EF.Context
             modelBuilder.Entity<BookEntity>()
                     .HasMany(e => e.Departments)
                     .WithMany(e => e.Books)
-                    .UsingEntity<StoreEntity>();
+                    .UsingEntity<StoreEntity>()
+                    .HasKey(e => e.Id);
         }
     }
 }

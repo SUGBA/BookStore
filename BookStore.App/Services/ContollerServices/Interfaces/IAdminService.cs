@@ -55,7 +55,7 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int departmentId, int bookId);
+        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int itemId);
 
         /// <summary>
         /// Получить ViewModel с выбранной новостью

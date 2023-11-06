@@ -17,20 +17,21 @@ using BookStore.Data.EntityDto.NewsDto;
 using BookStore.Catalog.Entity;
 using BookStore.News.Entity;
 using BookStore.App.Services.ConnectionServices.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.App.Services.ContollerServices
 {
     public class AdminService : IAdminService
     {
         private readonly ICoockieService _coockeService;
-        private readonly IUserRepository _userRepository;
-        private readonly IStoreRepository _storeRepository;
-        private readonly INewsRepositrory _newsRepository;
+        private readonly IBaseRepository<UserEntity> _userRepository;
+        private readonly IBaseRepository<StoreEntity> _storeRepository;
+        private readonly IBaseRepository<NewsEntity> _newsRepository;
         private readonly ISessionService _sessionService;
         private readonly IMapper _mapper;
 
-        public AdminService(IMapper mapper, ICoockieService coockeService, IUserRepository userRepositrory,
-            IStoreRepository storeRepository, INewsRepositrory newsRepository, ISessionService sessionService)
+        public AdminService(IMapper mapper, ICoockieService coockeService, IBaseRepository<UserEntity> userRepositrory,
+            IBaseRepository<StoreEntity> storeRepository, IBaseRepository<NewsEntity> newsRepository, ISessionService sessionService)
         {
             _mapper = mapper;
             _coockeService = coockeService;
@@ -57,7 +58,7 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<bool> Login(LoginUserDto model, HttpContext context)
         {
-            var users = await _userRepository.GetUsers();
+            var users = await _userRepository.GetAll().ToListAsync();
             if (users == null)
             {
                 model.Message = UserMessageConsts.UNKNOW_USER;
@@ -84,7 +85,7 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var users = await _userRepository.GetUsers();
+            var users = await _userRepository.GetAll().ToListAsync();
 
             if (users == null)
                 return new AdminItemsDto<UserEntity>() { ActiveItem = new UserEntity() };
@@ -100,7 +101,7 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var items = await _storeRepository.GetStores();
+            var items = await _storeRepository.GetAll().ToListAsync();
 
             if (items == null)
                 return new AdminItemsDto<StoreEntity>() { ActiveItem = new StoreEntity() };
@@ -116,7 +117,7 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var news = await _newsRepository.GetNews();
+            var news = await _newsRepository.GetAll().ToListAsync();
 
             if (news == null)
                 return new AdminItemsDto<NewsEntity>() { ActiveItem = new NewsEntity() };
@@ -135,7 +136,7 @@ namespace BookStore.App.Services.ContollerServices
 
             _sessionService.SetChangeStatus(context);
 
-            var user = await _userRepository.GetUserById(itemId);
+            var user = await _userRepository.GetById(itemId);
 
             if (user != null)
                 model.ActiveItem = user;
@@ -148,13 +149,13 @@ namespace BookStore.App.Services.ContollerServices
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int departmentId, int bookId)
+        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int itemId)
         {
             var model = await CatalogViewModel(context);
 
             _sessionService.SetChangeStatus(context);
 
-            var item = await _storeRepository.GetStoreById(departmentId, bookId);
+            var item = await _storeRepository.GetById(itemId);
 
             if (item != null)
                 model.ActiveItem = item;
@@ -173,7 +174,7 @@ namespace BookStore.App.Services.ContollerServices
 
             _sessionService.SetChangeStatus(context);
 
-            var news = await _newsRepository.GetNewsById(itemId);
+            var news = await _newsRepository.GetById(itemId);
 
             if (news != null)
                 model.ActiveItem = news;

@@ -116,9 +116,9 @@ namespace BookStore.App.Controllers
         /// <returns></returns>
         [HttpGet("SelectingCatalogElement/{departmentId}/{bookId}")]
         [Authorize]
-        public async Task<IActionResult> SelectingCatalogElement(int departmentId, int bookId)
+        public async Task<IActionResult> SelectingCatalogElement(int itemId)
         {
-            var res = await _service.CatalogViewModel(HttpContext, departmentId, bookId);
+            var res = await _service.CatalogViewModel(HttpContext, itemId);
             return View("AdminCatalogPage", res);
         }
 

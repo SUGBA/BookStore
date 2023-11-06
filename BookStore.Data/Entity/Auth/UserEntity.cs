@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Data.Entity;
 
 namespace BookStore.Admin.Entity
 {
     /// <summary>
     /// Пользователь
     /// </summary>
-    public class UserEntity
+    public class UserEntity : IEntity
     {
         /// <summary>
         /// Идентификатор
