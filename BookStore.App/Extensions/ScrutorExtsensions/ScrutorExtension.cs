@@ -1,4 +1,8 @@
-﻿namespace BookStore.App.Extensions.ScrutorExtsensions
+﻿using BookStore.Data.Entity;
+using BookStore.EF.Repository;
+using BookStore.EF.Repository.Interfaces;
+
+namespace BookStore.App.Extensions.ScrutorExtsensions
 {
     public static class ScrutorExtension
     {
@@ -6,10 +10,10 @@
         {
             services.Scan(selector => selector
                     .FromApplicationDependencies()
-                    .AddClasses(classSelector => classSelector
-                    .InNamespaces("BookStore.EF.Repository"))
-                    .AsMatchingInterface()
-                    .WithTransientLifetime()
+                    //.AddClasses(classSelector => classSelector.AssignableTo(typeof(BaseRepository<IEntity>))
+                    //.InNamespaces("BookStore.EF.Repository"))
+                    //.AsImplementedInterfaces()
+                    //.WithTransientLifetime()
 
                     .AddClasses(classSelector => classSelector
                     .InNamespaces("BookStore.App.Services"))

@@ -14,6 +14,14 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using BookStore.EF.Repository.Interfaces;
+using BookStore.EF.Repository;
+using BookStore.App.Services.ContollerServices.Interfaces;
+using BookStore.App.Services.ContollerServices;
+using BookStore.App.Services.AuthServices.Interfaces;
+using BookStore.App.Services.AuthServices;
+using BookStore.App.Services.ConnectionServices.Interfaces;
+using BookStore.App.Services.ConnectionServices;
 
 namespace BookStore.App
 {
@@ -40,7 +48,24 @@ namespace BookStore.App
                             .AddCookie();
 
             builder.Services.AddAutoMapper(typeof(AppMappingProfile));
-            builder.Services.ScanServices();
+
+            //builder.Services.ScanServices();
+
+            builder.Services.AddTransient<IBaseRepository<BookEntity>, BookRepository>();
+            builder.Services.AddTransient<IBaseRepository<DepartmentEntity>, DepartmentRepository>();
+            builder.Services.AddTransient<IBaseRepository<ManagerEntity>, ManagerRepository>();
+            builder.Services.AddTransient<IBaseRepository<NewsEntity>, NewsRepositrory>();
+            builder.Services.AddTransient<IBaseRepository<StoreEntity>, StoreRepository>();
+            builder.Services.AddTransient<IBaseRepository<UserEntity>, UserRepository>();
+
+            builder.Services.AddTransient<ICoockieService, CoockieService>();
+            builder.Services.AddTransient<ISessionService, SessionService>();
+
+            builder.Services.AddTransient<INewsService, NewsService>();
+            builder.Services.AddTransient<IAdminService, AdminService>();
+            builder.Services.AddTransient<ICatalogService, CatalogService>();
+            builder.Services.AddTransient<IContactService, ContactService>();
+            builder.Services.AddTransient<IMainService, MainService>();
 
             var app = builder.Build();
 

@@ -4,16 +4,17 @@ using BookStore.Catalog.Dto;
 using BookStore.Data.EntityDto.NewsDto;
 using BookStore.EF.Repository;
 using BookStore.EF.Repository.Interfaces;
+using BookStore.News.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.App.Services.ContollerServices
 {
     public class NewsService : INewsService
     {
-        private readonly IBaseRepository<NewsRepositrory> _repository;
+        private readonly IBaseRepository<NewsEntity> _repository;
         private readonly IMapper _mapper;
 
-        public NewsService(IBaseRepository<NewsRepositrory> repositrory, IMapper mapper)
+        public NewsService(IBaseRepository<NewsEntity> repositrory, IMapper mapper)
         {
             _repository = repositrory;
             _mapper = mapper;
