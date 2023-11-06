@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.EF.Repository
 {
-    public class NewsRepositrory : INewsRepositrory
+    public class NewsRepositrory : IBaseRepository<NewsEntity>
     {
         private readonly BookStoreContext _context;
 
@@ -94,6 +94,35 @@ namespace BookStore.EF.Repository
                 _context.News.Update(news);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public Task<List<NewsEntity>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<NewsEntity?> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Add(NewsEntity item)
+        {
+            if (item.Id == 0 || await GetNewsById(item.Id) == null)
+            {
+                await _context.News.AddAsync(item);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public Task DeleteBuId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(NewsEntity item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

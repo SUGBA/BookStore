@@ -12,5 +12,7 @@ namespace BookStore.Data.EntityDto.AdminDto
         public List<T> Items { get; set; } = new();
 
         public T ActiveItem { get; set; }
+
+        public bool IsChanged { get; set; }
     }
 }

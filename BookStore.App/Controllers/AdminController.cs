@@ -66,7 +66,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> GetUsersEditView()
         {
-            var res = await _service.UserViewModel();
+            var res = await _service.UserViewModel(HttpContext);
             return View("AdminUsersPage", res);
         }
 
@@ -78,7 +78,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> GetCatalogEditView()
         {
-            var res = await _service.CatalogViewModel();
+            var res = await _service.CatalogViewModel(HttpContext);
             return View("AdminCatalogPage", res);
         }
 
@@ -90,7 +90,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> GetNewsEditView()
         {
-            var res = await _service.NewsViewModel();
+            var res = await _service.NewsViewModel(HttpContext);
             return View("AdminNewsPage", res);
         }
 
@@ -104,7 +104,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> SelectingUserElement(int itemId)
         {
-            var res = await _service.UserViewModel(itemId);
+            var res = await _service.UserViewModel(HttpContext, itemId);
             return View("AdminUsersPage", res);
         }
 
@@ -118,7 +118,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> SelectingCatalogElement(int departmentId, int bookId)
         {
-            var res = await _service.CatalogViewModel(departmentId, bookId);
+            var res = await _service.CatalogViewModel(HttpContext, departmentId, bookId);
             return View("AdminCatalogPage", res);
         }
 
@@ -132,7 +132,7 @@ namespace BookStore.App.Controllers
         [Authorize]
         public async Task<IActionResult> SelectingNewsElement(int itemId)
         {
-            var res = await _service.NewsViewModel(itemId);
+            var res = await _service.NewsViewModel(HttpContext, itemId);
             return View("AdminNewsPage", res);
         }
     }

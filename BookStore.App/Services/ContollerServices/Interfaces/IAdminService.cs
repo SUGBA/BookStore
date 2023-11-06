@@ -29,39 +29,39 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// Получить ViewModel без выбранного пользователя
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<UserEntity>> UserViewModel();
+        public Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel без выбранной книги
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel();
+        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel без выбранной новости
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<NewsEntity>> NewsViewModel();
+        public Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel с выбранным пользователем
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<UserEntity>> UserViewModel(int itemId);
+        public Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context, int itemId);
 
         /// <summary>
         /// Получить ViewModel с выбранной книгой
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(int departmentId, int bookId);
+        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int departmentId, int bookId);
 
         /// <summary>
         /// Получить ViewModel с выбранной новостью
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<NewsEntity>> NewsViewModel(int itemId);
+        public Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId);
     }
 }

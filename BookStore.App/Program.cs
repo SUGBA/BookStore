@@ -28,6 +28,14 @@ namespace BookStore.App
             builder.Services.AddRazorPages();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.Name = ".BookStore.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                options.Cookie.IsEssential = false;
+            });
+
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                             .AddCookie();
 
@@ -55,6 +63,8 @@ namespace BookStore.App
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = string.Empty;
             });
+
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -16,6 +16,7 @@ using BookStore.Data.EntityDto.AdminDto;
 using BookStore.Data.EntityDto.NewsDto;
 using BookStore.Catalog.Entity;
 using BookStore.News.Entity;
+using BookStore.App.Services.ConnectionServices.Interfaces;
 
 namespace BookStore.App.Services.ContollerServices
 {
@@ -25,16 +26,18 @@ namespace BookStore.App.Services.ContollerServices
         private readonly IUserRepository _userRepository;
         private readonly IStoreRepository _storeRepository;
         private readonly INewsRepositrory _newsRepository;
+        private readonly ISessionService _sessionService;
         private readonly IMapper _mapper;
 
         public AdminService(IMapper mapper, ICoockieService coockeService, IUserRepository userRepositrory,
-            IStoreRepository storeRepository, INewsRepositrory newsRepository)
+            IStoreRepository storeRepository, INewsRepositrory newsRepository, ISessionService sessionService)
         {
             _mapper = mapper;
             _coockeService = coockeService;
             _userRepository = userRepositrory;
             _storeRepository = storeRepository;
             _newsRepository = newsRepository;
+            _sessionService = sessionService;
         }
 
         /// <summary>
@@ -77,8 +80,10 @@ namespace BookStore.App.Services.ContollerServices
         /// Получить ViewModel без выбранного пользователя
         /// </summary>
         /// <returns></returns>
-        public async Task<AdminItemsDto<UserEntity>> UserViewModel()
+        public async Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context)
         {
+            _sessionService.SetCeateStatus(context);
+
             var users = await _userRepository.GetUsers();
 
             if (users == null)
@@ -91,30 +96,26 @@ namespace BookStore.App.Services.ContollerServices
         /// Получить ViewModel без выбранной книги
         /// </summary>
         /// <returns></returns>
-        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel()
+        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context)
         {
+            _sessionService.SetCeateStatus(context);
+
             var items = await _storeRepository.GetStores();
 
             if (items == null)
                 return new AdminItemsDto<StoreEntity>() { ActiveItem = new StoreEntity() };
             else
-                return new AdminItemsDto<StoreEntity>()
-                {
-                    Items = items,
-                    ActiveItem = new StoreEntity()
-                    {
-                        Book = new BookEntity(),
-                        Department = new DepartmentEntity()
-                    }
-                };
+                return new AdminItemsDto<StoreEntity>() { Items = items, ActiveItem = new StoreEntity() };
         }
 
         /// <summary>
         /// Получить ViewModel без выбранной новости
         /// </summary>
         /// <returns></returns>
-        public async Task<AdminItemsDto<NewsEntity>> NewsViewModel()
+        public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context)
         {
+            _sessionService.SetCeateStatus(context);
+
             var news = await _newsRepository.GetNews();
 
             if (news == null)
@@ -128,9 +129,12 @@ namespace BookStore.App.Services.ContollerServices
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task<AdminItemsDto<UserEntity>> UserViewModel(int itemId)
+        public async Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context, int itemId)
         {
-            var model = await UserViewModel();
+            var model = await UserViewModel(context);
+
+            _sessionService.SetChangeStatus(context);
+
             var user = await _userRepository.GetUserById(itemId);
 
             if (user != null)
@@ -144,9 +148,12 @@ namespace BookStore.App.Services.ContollerServices
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(int departmentId, int bookId)
+        public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int departmentId, int bookId)
         {
-            var model = await CatalogViewModel();
+            var model = await CatalogViewModel(context);
+
+            _sessionService.SetChangeStatus(context);
+
             var item = await _storeRepository.GetStoreById(departmentId, bookId);
 
             if (item != null)
@@ -160,9 +167,12 @@ namespace BookStore.App.Services.ContollerServices
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(int itemId)
+        public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId)
         {
-            var model = await NewsViewModel();
+            var model = await NewsViewModel(context);
+
+            _sessionService.SetChangeStatus(context);
+
             var news = await _newsRepository.GetNewsById(itemId);
 
             if (news != null)
