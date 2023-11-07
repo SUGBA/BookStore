@@ -18,6 +18,8 @@ using BookStore.Catalog.Entity;
 using BookStore.News.Entity;
 using BookStore.App.Services.ConnectionServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Connections.Features;
+using BookStore.EF.Repository;
 
 namespace BookStore.App.Services.ContollerServices
 {
@@ -85,12 +87,9 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var users = await _userRepository.GetAll().ToListAsync();
+            var items = await _userRepository.GetAll().ToListAsync();
 
-            if (users == null)
-                return new AdminItemsDto<UserEntity>() { ActiveItem = new UserEntity() };
-            else
-                return new AdminItemsDto<UserEntity>() { Items = users, ActiveItem = new UserEntity() };
+            return CreateEmptyViewModel<UserEntity>(items); ;
         }
 
         /// <summary>
@@ -101,12 +100,13 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var items = await _storeRepository.GetAll().ToListAsync();
+            var items = await _storeRepository.GetAll()
+                .Include(x => x.Book)
+                .Include(y => y.Department)
+                .ThenInclude(y => y.Manager)
+                .ToListAsync();
 
-            if (items == null)
-                return new AdminItemsDto<StoreEntity>() { ActiveItem = new StoreEntity() };
-            else
-                return new AdminItemsDto<StoreEntity>() { Items = items, ActiveItem = new StoreEntity() };
+            return CreateEmptyViewModel<StoreEntity>(items);
         }
 
         /// <summary>
@@ -117,12 +117,17 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.SetCeateStatus(context);
 
-            var news = await _newsRepository.GetAll().ToListAsync();
+            var items = await _newsRepository.GetAll().ToListAsync();
 
-            if (news == null)
-                return new AdminItemsDto<NewsEntity>() { ActiveItem = new NewsEntity() };
+            return CreateEmptyViewModel<NewsEntity>(items);
+        }
+
+        private AdminItemsDto<T> CreateEmptyViewModel<T>(List<T> values) where T : class, new()
+        {
+            if (values == null)
+                return new AdminItemsDto<T>() { ActiveItem = new T() };
             else
-                return new AdminItemsDto<NewsEntity>() { Items = news, ActiveItem = new NewsEntity() };
+                return new AdminItemsDto<T>() { Items = values, ActiveItem = new T() };
         }
 
         /// <summary>
@@ -132,7 +137,8 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context, int itemId)
         {
-            var model = await UserViewModel(context);
+            var items = await _userRepository.GetAll().ToListAsync();
+            var model = CreateEmptyViewModel<UserEntity>(items);
 
             _sessionService.SetChangeStatus(context);
 
@@ -151,11 +157,20 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int itemId)
         {
-            var model = await CatalogViewModel(context);
+            var items = await _storeRepository.GetAll()
+                .Include(x => x.Book)
+                .Include(y => y.Department)
+                .ThenInclude(y => y.Manager)
+                .ToListAsync();
+            var model = CreateEmptyViewModel<StoreEntity>(items);
 
             _sessionService.SetChangeStatus(context);
 
-            var item = await _storeRepository.GetById(itemId);
+            var item = await _storeRepository.GetById(itemId)
+                .Include(x => x.Book)
+                .Include(y => y.Department)
+                .ThenInclude(y => y.Manager)
+                .ToListAsync();
 
             if (item != null)
                 model.ActiveItem = item;
@@ -170,7 +185,8 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId)
         {
-            var model = await NewsViewModel(context);
+            var items = await _newsRepository.GetAll().ToListAsync();
+            var model = CreateEmptyViewModel<NewsEntity>(items);
 
             _sessionService.SetChangeStatus(context);
 

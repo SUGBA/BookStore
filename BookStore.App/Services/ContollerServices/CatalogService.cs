@@ -26,7 +26,12 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<List<CatalogDto>> CreateViewModel()
         {
-            var list = await _repository.GetAll().ToListAsync();
+            var list = await _repository.GetAll()
+                .Include(x => x.Book)
+                .Include(y => y.Department)
+                .ThenInclude(y => y.Manager)
+                .ToListAsync();
+
             List<CatalogDto> res = list.Select(x => _mapper.Map<CatalogDto>(x)).ToList();
             return res;
         }
@@ -37,7 +42,12 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<List<CatalogDto>> CreateViewModel(SortPropertyDto model)
         {
-            var list = await _repository.GetAll().ToListAsync();
+            var list = await _repository.GetAll()
+                .Include(x => x.Book)
+                .Include(y => y.Department)
+                .ThenInclude(y => y.Manager)
+                .ToListAsync();
+
             IEnumerable<CatalogDto> res = list.Select(x => _mapper.Map<CatalogDto>(x)).ToList();
             if (model.PageCount > 0)
                 res = res.Where(x => x.PageCount <= model.PageCount);
