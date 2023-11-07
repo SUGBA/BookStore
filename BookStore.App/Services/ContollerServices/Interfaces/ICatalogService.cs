@@ -1,5 +1,4 @@
 ﻿using BookStore.Catalog.Dto;
-using BookStore.Data.EntityDto.CatalogDto;
 using BookStore.Data.EntityDto.ContactDto;
 
 namespace BookStore.App.Services.ContollerServices.Interfaces
@@ -11,11 +10,5 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<List<CatalogDto>> CreateViewModel();
-
-        /// <summary>
-        /// Собрать ViewModel по настрйкам сортировки
-        /// </summary>
-        /// <returns></returns>
-        Task<List<CatalogDto>> CreateViewModel(SortPropertyDto model);
     }
 }

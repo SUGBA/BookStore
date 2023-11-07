@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookStore.Catalog.Entity;
-using BookStore.Data.EntityDto.CatalogDto;
 
 namespace BookStore.Catalog.Dto
 {
