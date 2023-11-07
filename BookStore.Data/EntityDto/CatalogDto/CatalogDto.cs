@@ -32,7 +32,7 @@ namespace BookStore.Catalog.Dto
         /// <summary>
         /// Жанр
         /// </summary>
-        public Genres Genre { get; set; }
+        public string Genre { get; set; } = null!;
 
         /// <summary>
         /// Филиалы

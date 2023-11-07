@@ -40,7 +40,7 @@ namespace BookStore.Catalog.Entity
         /// <summary>
         /// Жанр
         /// </summary>
-        public Genres Genre { get; set; }
+        public string Genre { get; set; } = null!;
 
         /// <summary>
         /// Магазины
@@ -51,36 +51,5 @@ namespace BookStore.Catalog.Entity
         /// Филиалы
         /// </summary>
         public List<DepartmentEntity> Departments { get; set; } = new();
-    }
-
-    /// <summary>
-    /// Жанры книг
-    /// </summary>
-    public enum Genres : byte
-    {
-        /// <summary>
-        /// Фантастика
-        /// </summary>
-        Fantasy = 1,
-
-        /// <summary>
-        /// Проза
-        /// </summary>
-        Prose = 2,
-
-        /// <summary>
-        /// Научно-популярная
-        /// </summary>
-        PopularScience = 3,
-
-        /// <summary>
-        /// Зарубежная
-        /// </summary>
-        Foreign = 4,
-
-        /// <summary>
-        /// Отечественная
-        /// </summary>
-        Domestic = 5
     }
 }
