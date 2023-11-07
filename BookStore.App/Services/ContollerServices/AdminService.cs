@@ -89,7 +89,7 @@ namespace BookStore.App.Services.ContollerServices
 
             var items = await _userRepository.GetAll().ToListAsync();
 
-            return CreateEmptyViewModel<UserEntity>(items); ;
+            return CreateEmptyViewModel<UserEntity>(items);
         }
 
         /// <summary>
@@ -166,11 +166,7 @@ namespace BookStore.App.Services.ContollerServices
 
             _sessionService.SetChangeStatus(context);
 
-            var item = await _storeRepository.GetById(itemId)
-                .Include(x => x.Book)
-                .Include(y => y.Department)
-                .ThenInclude(y => y.Manager)
-                .ToListAsync();
+            var item = await _storeRepository.GetById(itemId, x => x.Book, p => p.Department);
 
             if (item != null)
                 model.ActiveItem = item;

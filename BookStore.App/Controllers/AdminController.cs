@@ -114,7 +114,7 @@ namespace BookStore.App.Controllers
         /// <param name="departmentId"></param>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        [HttpGet("SelectingCatalogElement/{departmentId}/{bookId}")]
+        [HttpGet("SelectingCatalogElement/{itemId}")]
         [Authorize]
         public async Task<IActionResult> SelectingCatalogElement(int itemId)
         {

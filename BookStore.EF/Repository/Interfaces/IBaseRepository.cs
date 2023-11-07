@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BookStore.Data.Entity;
@@ -38,10 +39,34 @@ namespace BookStore.EF.Repository.Interfaces
         Task<T?> GetById(int id);
 
         /// <summary>
+        /// Получение новости по Id с дозагрузкой
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="includeProperties"></param>
+        /// <returns></returns>
+        public Task<T?> GetById(int id, params Expression<Func<T, object>>[] includeProperties);
+
+        /// <summary>
         /// Изменить элемент
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
         Task Update(T item);
+
+        /// <summary>
+        /// Получение элементов с дозагрузкой 
+        /// </summary>
+        /// <param name="includeProperties"></param>
+        /// <returns></returns>
+        public IEnumerable<T> GetWithInclude(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties);
+
+        /// <summary>
+        /// Получение элементов с дозагрузкой
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="includeProperties"></param>
+        /// <returns></returns>
+        public IEnumerable<T> GetWithInclude(params Expression<Func<T, object>>[] includeProperties);
+
     }
 }
