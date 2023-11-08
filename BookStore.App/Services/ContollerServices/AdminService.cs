@@ -20,11 +20,13 @@ using BookStore.App.Services.ConnectionServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Connections.Features;
 using BookStore.EF.Repository;
+using BookStore.App.Services.FileService.Interfaces;
 
 namespace BookStore.App.Services.ContollerServices
 {
     public class AdminService : IAdminService
     {
+        private readonly IFileService _fileService;
         private readonly ICoockieService _coockeService;
         private readonly IBaseRepository<UserEntity> _userRepository;
         private readonly IBaseRepository<StoreEntity> _storeRepository;
@@ -32,9 +34,10 @@ namespace BookStore.App.Services.ContollerServices
         private readonly ISessionService _sessionService;
         private readonly IMapper _mapper;
 
-        public AdminService(IMapper mapper, ICoockieService coockeService, IBaseRepository<UserEntity> userRepositrory,
+        public AdminService(IFileService fileService, IMapper mapper, ICoockieService coockeService, IBaseRepository<UserEntity> userRepositrory,
             IBaseRepository<StoreEntity> storeRepository, IBaseRepository<NewsEntity> newsRepository, ISessionService sessionService)
         {
+            _fileService = fileService;
             _mapper = mapper;
             _coockeService = coockeService;
             _userRepository = userRepositrory;
@@ -202,6 +205,49 @@ namespace BookStore.App.Services.ContollerServices
                 model.ActiveItem = news;
 
             return model;
+        }
+
+        #endregion
+
+        #region Создание/Изменение
+
+        public async Task<AdminItemsDto<UserEntity>> ProcessUserItem(HttpContext context, AdminItemsDto<UserEntity> answer)
+        {
+            var fileResult = await _fileService.AddFile<UserEntity>(answer.File);
+            if (fileResult)
+            {
+                if (_sessionService.GetStatus(context))
+                    await _userRepository.Add(answer.ActiveItem);
+                else
+                    await _userRepository.Update(answer.ActiveItem);
+            }
+            return await UserViewModel(context);
+        }
+
+        public async Task<AdminItemsDto<StoreEntity>> ProcessCatalogItem(HttpContext context, AdminItemsDto<StoreEntity> answer)
+        {
+            var fileResult = await _fileService.AddFile<StoreEntity>(answer.File);
+            if (fileResult)
+            {
+                if (_sessionService.GetStatus(context))
+                    await _storeRepository.Add(answer.ActiveItem);
+                else
+                    await _storeRepository.Update(answer.ActiveItem);
+            }
+            return await CatalogViewModel(context);
+        }
+
+        public async Task<AdminItemsDto<NewsEntity>> ProcessNewsItem(HttpContext context, AdminItemsDto<NewsEntity> answer)
+        {
+            var fileResult = await _fileService.AddFile<NewsEntity>(answer.File);
+            if (fileResult)
+            {
+                if (_sessionService.GetStatus(context))
+                    await _newsRepository.Add(answer.ActiveItem);
+                else
+                    await _newsRepository.Update(answer.ActiveItem);
+            }
+            return await NewsViewModel(context);
         }
 
         #endregion

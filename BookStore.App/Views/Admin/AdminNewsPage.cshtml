@@ -19,12 +19,12 @@
             <label class="upperLabel">@Model.IsCreatedMessage</label>
             <form class="formContainer" method="post">
                 <div class="textInput">
-                    <label for="Content">Содержимое новости:</label>
-                    <textarea id="Content" name="Content">@Model.ActiveItem.Content</textarea>
+                    <label asp-for="ActiveItem.Content">Содержимое новости:</label>
+                    <textarea asp-for="ActiveItem.Content">@Model.ActiveItem.Content</textarea>
                 </div>
                 <div class="textInput">
-                    <label for="PathToImage">Изображение:</label>
-                    <input type="file" name="PathToImage">
+                    <label asp-for="File">Изображение:</label>
+                    <input type="file" asp-for="File">
                 </div>
                 <div class="submitInput">
                     <button type="submit">Отправить</button>

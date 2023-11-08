@@ -19,22 +19,22 @@
             <label class="upperLabel">@Model.IsCreatedMessage</label>
             <form class="formContainer" method="post">
                 <div class="textInput">
-                    <label for="Name">ФИО:</label>
-                    <input type="text" id="Name" name="Name" value="@Model.ActiveItem.Name">
+                    <label asp-for="ActiveItem.Name">ФИО:</label>
+                    <input type="text" asp-for="ActiveItem.Name" value="@Model.ActiveItem.Name">
                 </div>
                 <div class="textInput">
-                    <label for="Login">Логин:</label>
-                    <input type="text" id="Login" name="Login" value="@Model.ActiveItem.Login">
+                    <label asp-for="ActiveItem.Login">Логин:</label>
+                    <input type="text" asp-for="ActiveItem.Login" value="@Model.ActiveItem.Login">
                 </div>
                 <div class="textInput">
-                    <label for="Password">Пароль:</label>
-                    <input type="text" id="Password" name="Password" value="@Model.ActiveItem.Password">
+                    <label asp-for="ActiveItem.Password">Пароль:</label>
+                    <input type="text" asp-for="ActiveItem.Password" value="@Model.ActiveItem.Password">
                 </div>
 
                 <div class="radioInput">
                     <label>Роль:</label>
-                    <input type="radio" id="isAdmin" value="isAdmin" name="userRole" checked="@(Model.ActiveItem.Role==UserRole.Admin)"><label for="isAdmin">Администратор</label><br>
-                    <input type="radio" id="isUser" value="isUser" name="userRole" checked="@(Model.ActiveItem.Role==UserRole.User)"><label for="isUser">Пользователь</label>
+                    <input type="radio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.Admin)" value=@UserRole.Admin><label for="isAdmin">Администратор</label><br>
+                    <input type="radio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.User)" value=@UserRole.User><label for="isUser">Пользователь</label>
                 </div>
 
                 <div class="submitInput">

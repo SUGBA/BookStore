@@ -1,5 +1,9 @@
 ﻿using BookStore.Admin.Dto;
+using BookStore.Admin.Entity;
 using BookStore.App.Services.ContollerServices.Interfaces;
+using BookStore.Catalog.Entity;
+using BookStore.Data.EntityDto.AdminDto;
+using BookStore.News.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -136,6 +140,40 @@ namespace BookStore.App.Controllers
             return View("AdminNewsPage", res);
         }
 
-        //public async Task<IActionResult> Submit
+        /// <summary>
+        /// Точка получающая форму с раздела каталога
+        /// </summary>
+        /// <param name="asnwer"></param>
+        /// <returns></returns>
+        [HttpPost("SubmitCatalogItem")]
+        [Authorize]
+        public async Task<IActionResult> SubmitCatalogItem(AdminItemsDto<StoreEntity> asnwer)
+        {
+
+        }
+
+        /// <summary>
+        /// Точка получающая форму с раздела новости
+        /// </summary>
+        /// <param name="asnwer"></param>
+        /// <returns></returns>
+        [HttpPost("SubmitNewsItem")]
+        [Authorize]
+        public async Task<IActionResult> SubmitNewsItem(AdminItemsDto<NewsEntity> asnwer)
+        {
+
+        }
+
+        /// <summary>
+        /// Точка получающая форму с раздела пользователи
+        /// </summary>
+        /// <param name="asnwer"></param>
+        /// <returns></returns>
+        [HttpPost("SubmitUserItem")]
+        [Authorize]
+        public async Task<IActionResult> SubmitUserItem(AdminItemsDto<UserEntity> asnwer)
+        {
+
+        }
     }
 }

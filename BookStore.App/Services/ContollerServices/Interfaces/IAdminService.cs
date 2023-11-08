@@ -63,5 +63,31 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// <param name="itemId"></param>
         /// <returns></returns>
         public Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId);
+
+        /// <summary>
+        /// Отправлена форма с пользователем
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<UserEntity>> ProcessUserItem(HttpContext context, AdminItemsDto<UserEntity> answer);
+
+
+        /// <summary>
+        /// Отправлена форма с книгой
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<StoreEntity>> ProcessCatalogItem(HttpContext context, AdminItemsDto<StoreEntity> answer);
+
+
+        /// <summary>
+        /// Отправлена форма с новостью
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<NewsEntity>> ProcessNewsItem(HttpContext context, AdminItemsDto<NewsEntity> answer);
     }
 }
