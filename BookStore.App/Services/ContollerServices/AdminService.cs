@@ -42,7 +42,7 @@ namespace BookStore.App.Services.ContollerServices
             _newsRepository = newsRepository;
             _sessionService = sessionService;
         }
-
+        #region Панель авторизации
         /// <summary>
         /// Собрать ViewModel
         /// </summary>
@@ -79,6 +79,10 @@ namespace BookStore.App.Services.ContollerServices
             return true;
         }
 
+        #endregion
+
+        #region Без выбранного элемента
+
         /// <summary>
         /// Получить ViewModel без выбранного пользователя
         /// </summary>
@@ -89,7 +93,7 @@ namespace BookStore.App.Services.ContollerServices
 
             var items = await _userRepository.GetAll().ToListAsync();
 
-            return CreateEmptyViewModel<UserEntity>(items);
+            return CreateEmptyViewModel<UserEntity>(items, _sessionService.GetStatus(context));
         }
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace BookStore.App.Services.ContollerServices
                 .ThenInclude(y => y.Manager)
                 .ToListAsync();
 
-            return CreateEmptyViewModel<StoreEntity>(items);
+            return CreateEmptyViewModel<StoreEntity>(items, _sessionService.GetStatus(context));
         }
 
         /// <summary>
@@ -119,10 +123,12 @@ namespace BookStore.App.Services.ContollerServices
 
             var items = await _newsRepository.GetAll().ToListAsync();
 
-            return CreateEmptyViewModel<NewsEntity>(items);
+            return CreateEmptyViewModel<NewsEntity>(items, _sessionService.GetStatus(context));
         }
 
-        private AdminItemsDto<T> CreateEmptyViewModel<T>(List<T> values) where T : class, new()
+        #endregion
+
+        private AdminItemsDto<T> CreateEmptyViewModel<T>(List<T> values, bool isChanged) where T : class, new()
         {
             if (values == null)
                 return new AdminItemsDto<T>() { ActiveItem = new T() };
@@ -130,6 +136,7 @@ namespace BookStore.App.Services.ContollerServices
                 return new AdminItemsDto<T>() { Items = values, ActiveItem = new T() };
         }
 
+        #region С выбранным элементом
         /// <summary>
         /// Получить ViewModel с выбранным пользователем
         /// </summary>
@@ -138,9 +145,10 @@ namespace BookStore.App.Services.ContollerServices
         public async Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context, int itemId)
         {
             var items = await _userRepository.GetAll().ToListAsync();
-            var model = CreateEmptyViewModel<UserEntity>(items);
 
             _sessionService.SetChangeStatus(context);
+
+            var model = CreateEmptyViewModel<UserEntity>(items, _sessionService.GetStatus(context));
 
             var user = await _userRepository.GetById(itemId);
 
@@ -162,7 +170,7 @@ namespace BookStore.App.Services.ContollerServices
                 .Include(y => y.Department)
                 .ThenInclude(y => y.Manager)
                 .ToListAsync();
-            var model = CreateEmptyViewModel<StoreEntity>(items);
+            var model = CreateEmptyViewModel<StoreEntity>(items, _sessionService.GetStatus(context));
 
             _sessionService.SetChangeStatus(context);
 
@@ -182,7 +190,7 @@ namespace BookStore.App.Services.ContollerServices
         public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId)
         {
             var items = await _newsRepository.GetAll().ToListAsync();
-            var model = CreateEmptyViewModel<NewsEntity>(items);
+            var model = CreateEmptyViewModel<NewsEntity>(items, _sessionService.GetStatus(context));
 
             _sessionService.SetChangeStatus(context);
 
@@ -193,5 +201,7 @@ namespace BookStore.App.Services.ContollerServices
 
             return model;
         }
+
+        #endregion
     }
 }

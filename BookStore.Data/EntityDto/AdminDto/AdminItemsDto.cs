@@ -13,6 +13,7 @@ namespace BookStore.Data.EntityDto.AdminDto
 
         public T ActiveItem { get; set; }
 
+
         public bool IsChanged { get; set; }
     }
 }

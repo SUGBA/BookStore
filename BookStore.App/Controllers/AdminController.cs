@@ -135,5 +135,7 @@ namespace BookStore.App.Controllers
             var res = await _service.NewsViewModel(HttpContext, itemId);
             return View("AdminNewsPage", res);
         }
+
+        //public async Task<IActionResult> Submit
     }
 }

@@ -15,5 +15,12 @@ namespace BookStore.App.Services.ConnectionServices.Interfaces
         /// </summary>
         /// <param name="context"></param>
         public void SetCeateStatus(HttpContext context);
+
+        /// <summary>
+        /// Получить значение IsChange из сессии
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public bool GetStatus(HttpContext context);
     }
 }

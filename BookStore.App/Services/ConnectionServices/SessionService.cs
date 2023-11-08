@@ -7,6 +7,8 @@ namespace BookStore.App.Services.ConnectionServices
     {
         private const string ChangeName = "IsChange";
 
+        public bool GetStatus(HttpContext context) => Get<bool>(context, ChangeName);
+
         public void SetCeateStatus(HttpContext context) => Set<bool>(context, ChangeName, true);
 
         public void SetChangeStatus(HttpContext context) => Set<bool>(context, ChangeName, false);
@@ -21,6 +23,5 @@ namespace BookStore.App.Services.ConnectionServices
             var result = context.Session.GetString(key);
             return result == null ? default(T) : JsonSerializer.Deserialize<T>(result);
         }
-
     }
 }
