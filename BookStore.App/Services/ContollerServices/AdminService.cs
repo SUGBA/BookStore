@@ -131,9 +131,9 @@ namespace BookStore.App.Services.ContollerServices
         private AdminItemsDto<T> CreateEmptyViewModel<T>(List<T> values, bool isChanged) where T : class, new()
         {
             if (values == null)
-                return new AdminItemsDto<T>() { ActiveItem = new T() };
+                return new AdminItemsDto<T>() { ActiveItem = new T(), IsCreated = isChanged };
             else
-                return new AdminItemsDto<T>() { Items = values, ActiveItem = new T() };
+                return new AdminItemsDto<T>() { Items = values, ActiveItem = new T(), IsCreated = isChanged };
         }
 
         #region С выбранным элементом
@@ -170,9 +170,10 @@ namespace BookStore.App.Services.ContollerServices
                 .Include(y => y.Department)
                 .ThenInclude(y => y.Manager)
                 .ToListAsync();
-            var model = CreateEmptyViewModel<StoreEntity>(items, _sessionService.GetStatus(context));
 
             _sessionService.SetChangeStatus(context);
+
+            var model = CreateEmptyViewModel<StoreEntity>(items, _sessionService.GetStatus(context));
 
             var item = await _storeRepository.GetById(itemId, x => x.Book, p => p.Department);
 
@@ -190,9 +191,10 @@ namespace BookStore.App.Services.ContollerServices
         public async Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId)
         {
             var items = await _newsRepository.GetAll().ToListAsync();
-            var model = CreateEmptyViewModel<NewsEntity>(items, _sessionService.GetStatus(context));
 
             _sessionService.SetChangeStatus(context);
+
+            var model = CreateEmptyViewModel<NewsEntity>(items, _sessionService.GetStatus(context));
 
             var news = await _newsRepository.GetById(itemId);
 

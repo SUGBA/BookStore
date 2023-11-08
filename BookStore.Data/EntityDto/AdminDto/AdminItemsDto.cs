@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookStore.Admin.Entity;
-
-namespace BookStore.Data.EntityDto.AdminDto
+﻿namespace BookStore.Data.EntityDto.AdminDto
 {
     public class AdminItemsDto<T>
     {
@@ -13,7 +6,11 @@ namespace BookStore.Data.EntityDto.AdminDto
 
         public T ActiveItem { get; set; }
 
+        public bool IsCreated { get; set; }
 
-        public bool IsChanged { get; set; }
+        public string IsCreatedMessage
+        {
+            get { return IsCreated ? "Создание элемента" : "Изменение элемента"; }
+        }
     }
 }
