@@ -1,6 +1,5 @@
-﻿@using BookStore.Catalog.Entity;
-@using BookStore.Data.EntityDto.AdminDto;
-@model AdminItemsDto<StoreEntity>
+﻿@using BookStore.Data.EntityDto.AdminDto;
+@model AdminItemsDto<AdminCatalogDto>
 
 
 <link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
@@ -20,20 +19,20 @@
             <label class="upperLabel">@Model.IsCreatedMessage</label>
             <form asp-action="SubmitCatalogItem" asp-controller="Admin" class="formContainer" method="post" enctype="multipart/form-data">
                 <div class="textInput">
-                    <label asp-for="ActiveItem.Book.Name">Название:</label>
-                    <input type="text" asp-for="ActiveItem.Book.Name" value="@Model.ActiveItem.Book.Name" required />
+                    <label asp-for="ActiveItem.ViewName">Название:</label>
+                    <input type="text" asp-for="ActiveItem.ViewName" value="@Model.ActiveItem.ViewName" required />
                 </div>
                 <div class="textInput">
-                    <label asp-for="ActiveItem.Book.Price">Цена:</label>
-                    <input type="number" asp-for="ActiveItem.Book.Price" value="@Model.ActiveItem.Book.Price" required>
+                    <label asp-for="ActiveItem.Price">Цена:</label>
+                    <input type="number" asp-for="ActiveItem.Price" value="@Model.ActiveItem.Price" required>
                 </div>
                 <div class="textInput">
-                    <label asp-for="ActiveItem.Book.PageCount">Колличество страниц:</label>
-                    <input type="number" asp-for="ActiveItem.Book.PageCount" value="@Model.ActiveItem.Book.PageCount" required>
+                    <label asp-for="ActiveItem.PageCount">Колличество страниц:</label>
+                    <input type="number" asp-for="ActiveItem.PageCount" value="@Model.ActiveItem.PageCount" required>
                 </div>
                 <div class="textInput">
-                    <label asp-for="ActiveItem.Book.Genre">Жанр:</label>
-                    <input type="text" asp-for="ActiveItem.Book.Genre" value="@Model.ActiveItem.Book.Genre" required>
+                    <label asp-for="ActiveItem.Genre">Жанр:</label>
+                    <input type="text" asp-for="ActiveItem.Genre" value="@Model.ActiveItem.Genre" required>
                 </div>
                 <div class="textInput">
                     <label asp-for="ActiveItem.BookCount">Колличество в наличии:</label>
@@ -41,10 +40,10 @@
                 </div>
                 <div class="radioInput">
                     <label>Адрес:</label>
-                    @foreach (var item in Model.Items.GroupBy(x=>x.Department.Address))
+                    @foreach (var item in Model.Items)
                     {
-                        <input type="radio" asp-for="ActiveItem.Department.Address" checked="@(Model.ActiveItem.Department.Address==item.Key)" value=@item.Key id="@item.Key">
-                        <label for="@item.Key">@item.Key</label>
+                        <input type="radio" asp-for="ActiveItem.Address" checked="@(Model.ActiveItem.Address==item.Address)" value=@item.Address id="@item.Address">
+                        <label for="@item.Address">@item.Address</label>
                         <br>
                     }
                 </div>
@@ -67,7 +66,7 @@
                         {
                             <li>
                                 <a asp-controller="Admin" asp-action="SelectingCatalogElement" asp-route-itemId="@item.Id">
-                                    @item.Book.Name
+                                    @item.ViewName
                                 </a>
                             </li>
                         }

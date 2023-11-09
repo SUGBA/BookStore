@@ -29,49 +29,46 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// Получить ViewModel без выбранного пользователя
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context);
+        public Task<AdminItemsDto<AdminUserDto>> UserViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel без выбранной книги
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context);
+        public Task<AdminItemsDto<AdminCatalogDto>> CatalogViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel без выбранной новости
         /// </summary>
         /// <returns></returns>
-        public Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context);
+        public Task<AdminItemsDto<AdminNewsDto>> NewsViewModel(HttpContext context);
 
         /// <summary>
         /// Получить ViewModel с выбранным пользователем
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<UserEntity>> UserViewModel(HttpContext context, int itemId);
+        public Task<AdminItemsDto<AdminUserDto>> UserViewModel(HttpContext context, int itemId);
 
         /// <summary>
         /// Получить ViewModel с выбранной книгой
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> CatalogViewModel(HttpContext context, int itemId);
-
+        public Task<AdminItemsDto<AdminCatalogDto>> CatalogViewModel(HttpContext context, int itemId);
         /// <summary>
         /// Получить ViewModel с выбранной новостью
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<NewsEntity>> NewsViewModel(HttpContext context, int itemId);
-
+        public Task<AdminItemsDto<AdminNewsDto>> NewsViewModel(HttpContext context, int itemId);
         /// <summary>
         /// Отправлена форма с пользователем
         /// </summary>
         /// <param name="context"></param>
         /// <param name="answer"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<UserEntity>> ProcessUserItem(HttpContext context, AdminItemsDto<UserEntity> answer);
-
+        public Task<AdminItemsDto<AdminUserDto>> ProcessUserItem(HttpContext context, AdminItemsDto<AdminUserDto> answer);
 
         /// <summary>
         /// Отправлена форма с книгой
@@ -79,8 +76,7 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// <param name="context"></param>
         /// <param name="answer"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<StoreEntity>> ProcessCatalogItem(HttpContext context, AdminItemsDto<StoreEntity> answer);
-
+        public Task<AdminItemsDto<AdminCatalogDto>> ProcessCatalogItem(HttpContext context, AdminItemsDto<AdminCatalogDto> answer);
 
         /// <summary>
         /// Отправлена форма с новостью
@@ -88,6 +84,6 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// <param name="context"></param>
         /// <param name="answer"></param>
         /// <returns></returns>
-        public Task<AdminItemsDto<NewsEntity>> ProcessNewsItem(HttpContext context, AdminItemsDto<NewsEntity> answer);
+        public Task<AdminItemsDto<AdminNewsDto>> ProcessNewsItem(HttpContext context, AdminItemsDto<AdminNewsDto> answer);
     }
 }

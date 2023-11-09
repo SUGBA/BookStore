@@ -7,7 +7,7 @@ using BookStore.Admin.Entity;
 
 namespace BookStore.Data.EntityDto.AdminDto
 {
-    public class UserDto
+    public class AdminUserDto : BaseAdminItemDto
     {
         /// <summary>
         /// Логин
@@ -18,11 +18,6 @@ namespace BookStore.Data.EntityDto.AdminDto
         /// Пароль
         /// </summary>
         public string? Password { get; set; }
-
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string? Name { get; set; }
 
         /// <summary>
         /// Роль пользователя

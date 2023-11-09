@@ -1,6 +1,5 @@
 ﻿@using BookStore.Data.EntityDto.AdminDto;
-@using BookStore.News.Entity;
-@model AdminItemsDto<NewsEntity>
+@model AdminItemsDto<AdminNewsDto>
 
 <link rel="stylesheet" href="~/css/upperStyles.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/adminPageStyles.css" asp-append-version="true">
@@ -19,8 +18,8 @@
             <label class="upperLabel">@Model.IsCreatedMessage</label>
             <form asp-action="SubmitNewsItem" asp-controller="Admin" class="formContainer" method="post">
                 <div class="textInput">
-                    <label asp-for="ActiveItem.Content">Содержимое новости:</label>
-                    <textarea asp-for="ActiveItem.Content" required>@Model.ActiveItem.Content</textarea>
+                    <label asp-for="ActiveItem.ViewName">Содержимое новости:</label>
+                    <textarea asp-for="ActiveItem.ViewName" required>@Model.ActiveItem.ViewName</textarea>
                 </div>
                 <div class="textInput">
                     <label asp-for="File">Изображение:</label>
@@ -39,7 +38,7 @@
                     @{
                         foreach (var item in Model.Items)
                         {
-                            <li><a asp-controller="Admin" asp-action="SelectingNewsElement" asp-route-itemId=@item.Id>@string.Join(" ", item.Content!.Split().Take(5)).....</a></li>
+                            <li><a asp-controller="Admin" asp-action="SelectingNewsElement" asp-route-itemId=@item.Id>@string.Join(" ", item.ViewName!.Split().Take(5)).....</a></li>
                         }
                     }
                 </ul>
