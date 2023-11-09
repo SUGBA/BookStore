@@ -17,10 +17,10 @@
                 </ul>
             </nav>
             <label class="upperLabel">@Model.IsCreatedMessage</label>
-            <form class="formContainer" method="post">
+            <form asp-action="SubmitNewsItem" asp-controller="Admin" class="formContainer" method="post">
                 <div class="textInput">
                     <label asp-for="ActiveItem.Content">Содержимое новости:</label>
-                    <textarea asp-for="ActiveItem.Content">@Model.ActiveItem.Content</textarea>
+                    <textarea asp-for="ActiveItem.Content" required>@Model.ActiveItem.Content</textarea>
                 </div>
                 <div class="textInput">
                     <label asp-for="File">Изображение:</label>

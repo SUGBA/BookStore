@@ -22,6 +22,8 @@ using BookStore.App.Services.AuthServices.Interfaces;
 using BookStore.App.Services.AuthServices;
 using BookStore.App.Services.ConnectionServices.Interfaces;
 using BookStore.App.Services.ConnectionServices;
+using BookStore.App.Services.FileService.Interfaces;
+using BookStore.App.Services.FileService;
 
 namespace BookStore.App
 {
@@ -60,6 +62,8 @@ namespace BookStore.App
 
             builder.Services.AddTransient<ICoockieService, CoockieService>();
             builder.Services.AddTransient<ISessionService, SessionService>();
+
+            builder.Services.AddTransient<IFileService, FileService>();
 
             builder.Services.AddTransient<INewsService, NewsService>();
             builder.Services.AddTransient<IAdminService, AdminService>();

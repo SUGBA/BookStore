@@ -5,13 +5,13 @@ namespace BookStore.App.Services.ConnectionServices
 {
     public class SessionService : ISessionService
     {
-        private const string ChangeName = "IsChange";
+        private const string ChangeName = "IsCreated";
 
-        public bool GetStatus(HttpContext context) => Get<bool>(context, ChangeName);
+        public int GetId(HttpContext context) => Get<int>(context, ChangeName);
 
-        public void SetCeateStatus(HttpContext context) => Set<bool>(context, ChangeName, true);
+        public void ClearSelectedItem(HttpContext context) => Set<int>(context, ChangeName, default(int));
 
-        public void SetChangeStatus(HttpContext context) => Set<bool>(context, ChangeName, false);
+        public void SetSelectedItem(HttpContext context, int id) => Set<int>(context, ChangeName, id);
 
         private void Set<T>(HttpContext context, string key, T value)
         {

@@ -10,11 +10,11 @@ namespace BookStore.Data.EntityDto.AdminDto
 
         public IFormFile? File { get; set; }
 
-        public bool IsCreated { get; set; }
+        public int SelectedId { get; set; }
 
         public string IsCreatedMessage
         {
-            get { return IsCreated ? "Создание элемента" : "Изменение элемента"; }
+            get { return SelectedId == default(int) ? "Создание элемента" : "Изменение элемента"; }
         }
     }
 }

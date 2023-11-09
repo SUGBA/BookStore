@@ -147,9 +147,10 @@ namespace BookStore.App.Controllers
         /// <returns></returns>
         [HttpPost("SubmitCatalogItem")]
         [Authorize]
-        public async Task<IActionResult> SubmitCatalogItem(AdminItemsDto<StoreEntity> asnwer)
+        public async Task<IActionResult> SubmitCatalogItem(AdminItemsDto<StoreEntity> answer)
         {
-
+            var res = await _service.ProcessCatalogItem(HttpContext, answer);
+            return View("AdminCatalogPage", res);
         }
 
         /// <summary>
@@ -159,9 +160,10 @@ namespace BookStore.App.Controllers
         /// <returns></returns>
         [HttpPost("SubmitNewsItem")]
         [Authorize]
-        public async Task<IActionResult> SubmitNewsItem(AdminItemsDto<NewsEntity> asnwer)
+        public async Task<IActionResult> SubmitNewsItem(AdminItemsDto<NewsEntity> answer)
         {
-
+            var res = await _service.ProcessNewsItem(HttpContext, answer);
+            return View("AdminNewsPage", res);
         }
 
         /// <summary>
@@ -171,9 +173,10 @@ namespace BookStore.App.Controllers
         /// <returns></returns>
         [HttpPost("SubmitUserItem")]
         [Authorize]
-        public async Task<IActionResult> SubmitUserItem(AdminItemsDto<UserEntity> asnwer)
+        public async Task<IActionResult> SubmitUserItem(AdminItemsDto<UserEntity> answer)
         {
-
+            var res = await _service.ProcessUserItem(HttpContext, answer);
+            return View("AdminUsersPage", res);
         }
     }
 }

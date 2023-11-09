@@ -109,6 +109,16 @@ namespace BookStore.EF.Repository
         }
 
         /// <summary>
+        /// Отслеживание переданной сущности
+        /// </summary>
+        /// <param name="item"></param>
+        public void Attach(TEntity item)
+        {
+            if (DbSet.Any(x => x == item))
+                _context.Attach(item);
+        }
+
+        /// <summary>
         /// Получение элементов с дозагрузкой 
         /// </summary>
         /// <param name="includeProperties"></param>

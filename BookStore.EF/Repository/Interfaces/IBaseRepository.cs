@@ -39,6 +39,12 @@ namespace BookStore.EF.Repository.Interfaces
         Task<T?> GetById(int id);
 
         /// <summary>
+        /// Отслеживание переданной сущности
+        /// </summary>
+        /// <param name="item"></param>
+        public void Attach(T item);
+
+        /// <summary>
         /// Получение новости по Id с дозагрузкой
         /// </summary>
         /// <param name="id"></param>

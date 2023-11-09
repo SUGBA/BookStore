@@ -20,23 +20,23 @@ namespace BookStore.App.Services.FileService
             _appEnvironment = appEnvironment;
         }
 
-        public async Task<bool> AddFile<T>(IFormFile? AnswerFile) where T : IEntity
+        private string GetDefaultPath() => $"{_directoryPath}/shreImage/logo.png";
+
+        public async Task<string> AddAndGetPath<T>(IFormFile? AnswerFile) where T : IEntity
         {
             if (CheclFile(AnswerFile))
             {
                 var path = PathCreater(typeof(T), AnswerFile!.FileName);
                 if (path is not null)
                 {
-                    FileMode mode = Directory.Exists(path) ? FileMode.CreateNew : FileMode.Open;
-
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, mode))
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await AnswerFile.CopyToAsync(fileStream);
                     }
-                    return true;
+                    return path;
                 }
             }
-            return false;
+            return GetDefaultPath();
         }
 
         private string? PathCreater(Type T, string fileName)
@@ -50,7 +50,7 @@ namespace BookStore.App.Services.FileService
 
         private bool CheclFile(IFormFile? AnswerFile)
         {
-            return AnswerFile != null && AnswerFile.ContentType == "image/png";
+            return AnswerFile != null && (AnswerFile.ContentType == "image/png" || AnswerFile.ContentType == "image/jpeg");
         }
     }
 }

@@ -5,6 +5,6 @@ namespace BookStore.App.Services.FileService.Interfaces
 {
     public interface IFileService
     {
-        public Task<bool> AddFile<T>(IFormFile? AnswerFile) where T : IEntity;
+        public Task<string> AddAndGetPath<T>(IFormFile? AnswerFile) where T : IEntity;
     }
 }

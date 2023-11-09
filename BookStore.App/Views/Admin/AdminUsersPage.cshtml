@@ -17,24 +17,24 @@
                 </ul>
             </nav>
             <label class="upperLabel">@Model.IsCreatedMessage</label>
-            <form class="formContainer" method="post">
+            <form asp-action="SubmitUserItem" asp-controller="Admin" class="formContainer" method="post">
                 <div class="textInput">
                     <label asp-for="ActiveItem.Name">ФИО:</label>
-                    <input type="text" asp-for="ActiveItem.Name" value="@Model.ActiveItem.Name">
+                    <input type="text" asp-for="ActiveItem.Name" value="@Model.ActiveItem.Name" required>
                 </div>
                 <div class="textInput">
                     <label asp-for="ActiveItem.Login">Логин:</label>
-                    <input type="text" asp-for="ActiveItem.Login" value="@Model.ActiveItem.Login">
+                    <input type="text" asp-for="ActiveItem.Login" value="@Model.ActiveItem.Login" required>
                 </div>
                 <div class="textInput">
                     <label asp-for="ActiveItem.Password">Пароль:</label>
-                    <input type="text" asp-for="ActiveItem.Password" value="@Model.ActiveItem.Password">
+                    <input type="text" asp-for="ActiveItem.Password" value="@Model.ActiveItem.Password" required>
                 </div>
 
                 <div class="radioInput">
                     <label>Роль:</label>
-                    <input type="radio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.Admin)" value=@UserRole.Admin><label for="isAdmin">Администратор</label><br>
-                    <input type="radio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.User)" value=@UserRole.User><label for="isUser">Пользователь</label>
+                    <input type="radio" name="roleRadio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.Admin)" value=@UserRole.Admin id="adminRadio"><label for="adminRadio">Администратор</label><br>
+                    <input type="radio" name="roleRadio" asp-for="ActiveItem.Role" checked="@(Model.ActiveItem.Role==UserRole.User)" value=@UserRole.User id="userRadio" required><label for="userRadio">Пользователь</label>
                 </div>
 
                 <div class="submitInput">
