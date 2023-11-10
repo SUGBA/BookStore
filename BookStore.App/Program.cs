@@ -51,25 +51,7 @@ namespace BookStore.App
 
             builder.Services.AddAutoMapper(typeof(AppMappingProfile));
 
-            //builder.Services.ScanServices();
-
-            builder.Services.AddTransient<IBaseRepository<BookEntity>, BookRepository>();
-            builder.Services.AddTransient<IBaseRepository<DepartmentEntity>, DepartmentRepository>();
-            builder.Services.AddTransient<IBaseRepository<ManagerEntity>, ManagerRepository>();
-            builder.Services.AddTransient<IBaseRepository<NewsEntity>, NewsRepositrory>();
-            builder.Services.AddTransient<IBaseRepository<StoreEntity>, StoreRepository>();
-            builder.Services.AddTransient<IBaseRepository<UserEntity>, UserRepository>();
-
-            builder.Services.AddTransient<ICoockieService, CoockieService>();
-            builder.Services.AddTransient<ISessionService, SessionService>();
-
-            builder.Services.AddTransient<IFileService, FileService>();
-
-            builder.Services.AddTransient<INewsService, NewsService>();
-            builder.Services.AddTransient<IAdminService, AdminService>();
-            builder.Services.AddTransient<ICatalogService, CatalogService>();
-            builder.Services.AddTransient<IContactService, ContactService>();
-            builder.Services.AddTransient<IMainService, MainService>();
+            builder.Services.ScanServices();
 
             var app = builder.Build();
 

@@ -10,10 +10,10 @@ namespace BookStore.App.Extensions.ScrutorExtsensions
         {
             services.Scan(selector => selector
                     .FromApplicationDependencies()
-                    //.AddClasses(classSelector => classSelector.AssignableTo(typeof(BaseRepository<IEntity>))
-                    //.InNamespaces("BookStore.EF.Repository"))
-                    //.AsImplementedInterfaces()
-                    //.WithTransientLifetime()
+                    .AddClasses(classSelector => classSelector.AssignableTo(typeof(IBaseRepository<>))
+                    .InNamespaces("BookStore.EF.Repository"))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime()
 
                     .AddClasses(classSelector => classSelector
                     .InNamespaces("BookStore.App.Services"))
