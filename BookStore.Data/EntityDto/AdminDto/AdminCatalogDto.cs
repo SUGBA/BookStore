@@ -32,5 +32,10 @@ namespace BookStore.Data.EntityDto.AdminDto
         /// Количество книг
         /// </summary>
         public string BookCount { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Список адресов для RadioButton
+        /// </summary>
+        public List<string> Addresses { get; set; } = new();
     }
 }

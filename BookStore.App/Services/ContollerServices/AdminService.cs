@@ -98,9 +98,11 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.ClearSelectedItem(context);
 
-            var items = await _userRepository.GetAll().Select(x => _mapper.Map<AdminUserDto>(x)).ToListAsync();
+            var items = await _userRepository.GetAll().Select(x => _mapper.Map<BaseAdminItemDto>(x)).ToListAsync();
 
-            return CreateEmptyViewModel<AdminUserDto>(items, _sessionService.GetId(context));
+            var res = CreateEmptyViewModel<AdminUserDto>(items, _sessionService.GetId(context));
+
+            return res;
         }
 
         /// <summary>
@@ -115,10 +117,15 @@ namespace BookStore.App.Services.ContollerServices
                 .Include(x => x.Book)
                 .Include(y => y.Department)
                 .ThenInclude(y => y.Manager)
-                .Select(x => _mapper.Map<AdminCatalogDto>(x))
+                .Select(x => _mapper.Map<BaseAdminItemDto>(x))
                 .ToListAsync();
 
-            return CreateEmptyViewModel<AdminCatalogDto>(items, _sessionService.GetId(context));
+            var res = CreateEmptyViewModel<AdminCatalogDto>(items, _sessionService.GetId(context));
+
+            var addresses = await _departmentRepository.GetAll().Select(x => x.Address).ToListAsync();
+            res.ActiveItem.Addresses = addresses == null ? new List<string>() : addresses!;
+
+            return res;
         }
 
         /// <summary>
@@ -129,14 +136,16 @@ namespace BookStore.App.Services.ContollerServices
         {
             _sessionService.ClearSelectedItem(context);
 
-            var items = await _newsRepository.GetAll().Select(x => _mapper.Map<AdminNewsDto>(x)).ToListAsync();
+            var items = await _newsRepository.GetAll().Select(x => _mapper.Map<BaseAdminItemDto>(x)).ToListAsync();
 
-            return CreateEmptyViewModel<AdminNewsDto>(items, _sessionService.GetId(context));
+            var res = CreateEmptyViewModel<AdminNewsDto>(items, _sessionService.GetId(context));
+
+            return res;
         }
 
         #endregion
 
-        private AdminItemsDto<T> CreateEmptyViewModel<T>(List<T> values, int selectedId) where T : class, new()
+        private AdminItemsDto<T> CreateEmptyViewModel<T>(List<BaseAdminItemDto> values, int selectedId) where T : class, new()
         {
             if (values == null)
                 return new AdminItemsDto<T>() { ActiveItem = new T(), SelectedId = selectedId };
@@ -152,7 +161,7 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<AdminItemsDto<AdminUserDto>> UserViewModel(HttpContext context, int itemId)
         {
-            var items = await _userRepository.GetAll().Select(x => _mapper.Map<AdminUserDto>(x)).ToListAsync();
+            var items = await _userRepository.GetAll().Select(x => _mapper.Map<BaseAdminItemDto>(x)).ToListAsync();
 
             _sessionService.SetSelectedItem(context, itemId);
 
@@ -177,7 +186,7 @@ namespace BookStore.App.Services.ContollerServices
                 .Include(x => x.Book)
                 .Include(y => y.Department)
                 .ThenInclude(y => y.Manager)
-                .Select(x => _mapper.Map<AdminCatalogDto>(x))
+                .Select(x => _mapper.Map<BaseAdminItemDto>(x))
                 .ToListAsync();
 
             _sessionService.SetSelectedItem(context, itemId);
@@ -187,7 +196,11 @@ namespace BookStore.App.Services.ContollerServices
             var item = await _storeRepository.GetById(itemId, x => x.Book, p => p.Department);
 
             if (item != null)
+            {
                 model.ActiveItem = _mapper.Map<AdminCatalogDto>(item);
+                var addresses = await _departmentRepository.GetAll().Select(x => x.Address).ToListAsync();
+                model.ActiveItem.Addresses = addresses == null ? new List<string>() : addresses!;
+            }
 
             return model;
         }
@@ -199,7 +212,7 @@ namespace BookStore.App.Services.ContollerServices
         /// <returns></returns>
         public async Task<AdminItemsDto<AdminNewsDto>> NewsViewModel(HttpContext context, int itemId)
         {
-            var items = await _newsRepository.GetAll().Select(x => _mapper.Map<AdminNewsDto>(x)).ToListAsync();
+            var items = await _newsRepository.GetAll().Select(x => _mapper.Map<BaseAdminItemDto>(x)).ToListAsync();
 
             _sessionService.SetSelectedItem(context, itemId);
 

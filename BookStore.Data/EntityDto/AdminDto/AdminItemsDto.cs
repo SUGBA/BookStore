@@ -4,7 +4,7 @@ namespace BookStore.Data.EntityDto.AdminDto
 {
     public class AdminItemsDto<T>
     {
-        public List<T> Items { get; set; } = new();
+        public List<BaseAdminItemDto> Items { get; set; } = new();
 
         public T ActiveItem { get; set; }
 

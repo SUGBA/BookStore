@@ -29,6 +29,24 @@ namespace BookStore.Data.AutoMapper
                 .ForMember(dto => dto.DepartmentsAddress, opt => opt.MapFrom(ent => ent.Book.Departments.Select(x => x.Address)))
                 .ForMember(dto => dto.BookCount, opt => opt.MapFrom(ent => ent.BookCount));
 
+            #region Мап к базовому Dto
+
+            CreateMap<UserEntity, BaseAdminItemDto>()
+              .ForMember(dto => dto.ViewName, opt => opt.MapFrom(ent => ent.Name))
+              .ForMember(dto => dto.Id, opt => opt.MapFrom(ent => ent.Id));
+
+            CreateMap<StoreEntity, BaseAdminItemDto>()
+              .ForMember(dto => dto.ViewName, opt => opt.MapFrom(ent => ent.Book.Name))
+              .ForMember(dto => dto.Id, opt => opt.MapFrom(ent => ent.Id));
+
+            CreateMap<NewsEntity, BaseAdminItemDto>()
+              .ForMember(dto => dto.ViewName, opt => opt.MapFrom(ent => ent.Content))
+              .ForMember(dto => dto.Id, opt => opt.MapFrom(ent => ent.Id));
+
+            #endregion
+
+            #region Мап к выбранному Dto
+
             CreateMap<UserEntity, AdminUserDto>()
                 .ForMember(dto => dto.Role, opt => opt.MapFrom(ent => ent.Role))
                 .ForMember(dto => dto.Login, opt => opt.MapFrom(ent => ent.Login))
@@ -51,6 +69,8 @@ namespace BookStore.Data.AutoMapper
                 .ForMember(dto => dto.ViewName, opt => opt.MapFrom(ent => ent.Book.Name))
                 .ForMember(dto => dto.Id, opt => opt.MapFrom(ent => ent.Id))
                 .ReverseMap();
+
+            #endregion
 
             CreateMap<BookEntity, MainDto>();
 

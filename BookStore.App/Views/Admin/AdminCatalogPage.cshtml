@@ -40,10 +40,10 @@
                 </div>
                 <div class="radioInput">
                     <label>Адрес:</label>
-                    @foreach (var item in Model.Items)
+                    @foreach (var item in Model.ActiveItem.Addresses)
                     {
-                        <input type="radio" asp-for="ActiveItem.Address" checked="@(Model.ActiveItem.Address==item.Address)" value=@item.Address id="@item.Address">
-                        <label for="@item.Address">@item.Address</label>
+                        <input type="radio" asp-for="ActiveItem.Address" checked="@(Model.ActiveItem.Address==item)" value=@item id="@item">
+                        <label for="@item">@item</label>
                         <br>
                     }
                 </div>
