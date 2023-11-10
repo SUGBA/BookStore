@@ -16,7 +16,7 @@
                 </ul>
             </nav>
             <label class="upperLabel">@Model.IsCreatedMessage</label>
-            <form asp-action="SubmitNewsItem" asp-controller="Admin" class="formContainer" method="post">
+            <form asp-action="SubmitNewsItem" asp-controller="Admin" class="formContainer" method="post" enctype="multipart/form-data">
                 <div class="textInput">
                     <label asp-for="ActiveItem.ViewName">Содержимое новости:</label>
                     <textarea asp-for="ActiveItem.ViewName" required>@Model.ActiveItem.ViewName</textarea>
