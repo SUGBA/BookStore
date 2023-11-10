@@ -15,34 +15,20 @@ body {
 .container {
     display: grid;
     height: 100vh;
-    grid-template-areas:
-        "U U U U   U U U U   U U"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "L L L L   L L L L   L L"
-        "K K K K   K K K K   K K";
+    grid-template-rows: 80px max-content 60px;
 }
 
 /* Описание Grird-Areas */
 .PanelUpper {
-    grid-area: U;
     height: 80px;
     border-bottom: 2px solid black;
     border-radius: 0px 0px 15px 15px;
 }
 
 .PanelLeft {
-    grid-area: L;
+    height: 100%;
 }
 
 .PanelUnder {
     height: 60px;
-    grid-area: K;
 }
