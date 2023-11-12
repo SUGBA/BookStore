@@ -6,7 +6,7 @@
 
 .outContainer {
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -173,9 +173,7 @@
 
 /* Стили для правой панели */
 .rightContainer {
-    white-space: nowrap;
-    height: 100vh;
-    display: inline-block;
+    height: fit-content;
 }
 
 .addButton {
@@ -192,7 +190,7 @@
 
 
 .itemsList {
-    width: 100%;
+    width: auto;
 }
 
     .itemsList li {

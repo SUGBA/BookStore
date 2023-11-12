@@ -6,7 +6,7 @@
 
 body {
     font-family: sans-serif;
-    font-size: 40px;
+    font-size: 2em;
     width: 100%;
     min-height: 100vh;
     background-color: rgb(205, 236, 248);
@@ -15,7 +15,7 @@ body {
 .container {
     display: grid;
     height: 100vh;
-    grid-template-rows: 80px max-content 60px;
+    grid-template-rows: 80px auto 60px;
 }
 
 /* Описание Grird-Areas */
@@ -26,7 +26,7 @@ body {
 }
 
 .PanelLeft {
-    height: 100%;
+    height: fit-content;
 }
 
 .PanelUnder {
