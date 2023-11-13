@@ -29,7 +29,7 @@ namespace BookStore.EF.Repository.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteBuId(int id);
+        Task Delete(T item);
 
         /// <summary>
         /// Получение элемента по Id

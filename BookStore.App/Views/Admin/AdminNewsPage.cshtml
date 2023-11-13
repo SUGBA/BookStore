@@ -38,7 +38,12 @@
                     @{
                         foreach (var item in Model.Items)
                         {
-                            <li><a asp-controller="Admin" asp-action="SelectingNewsElement" asp-route-itemId=@item.Id>@string.Join(" ", item.ViewName!.Split().Take(5)).....</a></li>
+                            <li>
+                                <div class="linkLine">
+                                    <a asp-controller="Admin" asp-action="SelectingNewsElement" asp-route-itemId=@item.Id style="float: left">@string.Join(" ", item.ViewName!.Split().Take(5)).....</a>
+                                    <a asp-controller="Admin" asp-action="DeleteNews" asp-route-itemId="@item.Id" style="float: right; width:10px">X</a>
+                                </div>
+                            </li>
                         }
                     }
                 </ul>

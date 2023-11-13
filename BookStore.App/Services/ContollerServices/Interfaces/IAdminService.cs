@@ -85,5 +85,30 @@ namespace BookStore.App.Services.ContollerServices.Interfaces
         /// <param name="answer"></param>
         /// <returns></returns>
         public Task<AdminItemsDto<AdminNewsDto>> ProcessNewsItem(HttpContext context, AdminItemsDto<AdminNewsDto> answer);
+
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<AdminUserDto>> DeleteUser(HttpContext context, int itemId);
+
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<AdminCatalogDto>> DeleteCatalog(HttpContext context, int itemId);
+
+        // <summary>
+        /// Удаление новости
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public Task<AdminItemsDto<AdminNewsDto>> DeleteNews(HttpContext context, int itemId);
     }
 }
+

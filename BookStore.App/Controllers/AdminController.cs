@@ -178,5 +178,44 @@ namespace BookStore.App.Controllers
             var res = await _service.ProcessUserItem(HttpContext, answer);
             return View("AdminUsersPage", res);
         }
+
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        [HttpGet("DeleteCatalog/{itemId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteCatalog(int itemId)
+        {
+            var res = await _service.DeleteCatalog(HttpContext, itemId);
+            return View("AdminCatalogPage", res);
+        }
+
+        /// <summary>
+        /// Удаление новости
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        [HttpGet("DeleteNews/{itemId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteNews(int itemId)
+        {
+            var res = await _service.DeleteNews(HttpContext, itemId);
+            return View("AdminNewsPage", res);
+        }
+
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        [HttpGet("DeleteUser/{itemId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUser(int itemId)
+        {
+            var res = await _service.DeleteUser(HttpContext, itemId);
+            return View("AdminUsersPage", res);
+        }
     }
 }

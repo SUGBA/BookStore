@@ -65,9 +65,10 @@
                         foreach (var item in Model.Items)
                         {
                             <li>
-                                <a asp-controller="Admin" asp-action="SelectingCatalogElement" asp-route-itemId="@item.Id">
-                                    @item.ViewName
-                                </a>
+                                <div class="linkLine">
+                                    <a asp-controller="Admin" asp-action="SelectingCatalogElement" asp-route-itemId="@item.Id" style="float: left">@item.ViewName</a>
+                                    <a asp-controller="Admin" asp-action="DeleteCatalog" asp-route-itemId="@item.Id" style="float: right; width:10px">X</a>
+                                </div>
                             </li>
                         }
                     }

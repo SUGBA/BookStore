@@ -42,14 +42,10 @@ namespace BookStore.EF.Repository
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>
-        public async Task DeleteBuId(int id)
+        public async Task Delete(TEntity item)
         {
-            TEntity? item = await GetById(id);
-            if (item != null)
-            {
-                DbSet.Remove(item);
-                await _context.SaveChangesAsync();
-            }
+            DbSet.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>

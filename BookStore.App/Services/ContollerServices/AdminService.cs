@@ -228,7 +228,7 @@ namespace BookStore.App.Services.ContollerServices
 
         #endregion
 
-        #region Создание/Изменение
+        #region Создание/Изменение/Удаление
 
         public async Task<AdminItemsDto<AdminUserDto>> ProcessUserItem(HttpContext context, AdminItemsDto<AdminUserDto> answer)
         {
@@ -299,6 +299,52 @@ namespace BookStore.App.Services.ContollerServices
             }
 
             return await NewsViewModel(context);
+        }
+
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public async Task<AdminItemsDto<AdminUserDto>> DeleteUser(HttpContext context, int itemId)
+        {
+            var item = await _userRepository.GetById(itemId);
+            if (item != null)
+                await _userRepository.Delete(item);
+
+            var res = await UserViewModel(context);
+            return res;
+        }
+
+        /// <summary>
+        /// Удаление товара
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public async Task<AdminItemsDto<AdminCatalogDto>> DeleteCatalog(HttpContext context, int itemId)
+        {
+            var item = await _storeRepository.GetById(itemId, x => x.Book, x => x.Department);
+            if (item != null)
+                await _storeRepository.Delete(item);
+            var res = await CatalogViewModel(context);
+            return res;
+        }
+
+        /// <summary>
+        /// Удаление новости
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="answer"></param>
+        /// <returns></returns>
+        public async Task<AdminItemsDto<AdminNewsDto>> DeleteNews(HttpContext context, int itemId)
+        {
+            var item = await _newsRepository.GetById(itemId);
+            if (item != null)
+                await _newsRepository.Delete(item);
+            var res = await NewsViewModel(context);
+            return res;
         }
 
         #endregion

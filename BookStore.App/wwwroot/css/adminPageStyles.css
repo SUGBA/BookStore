@@ -190,6 +190,7 @@
 
 
 .itemsList {
+    margin-top: 2em;
     width: auto;
 }
 
@@ -220,3 +221,8 @@
         color: rgb(0, 0, 0);
         border-bottom: 3px solid rgb(0, 0, 0);
     }
+
+.linkLine {
+    white-space: nowrap;
+    display: flex;
+}
